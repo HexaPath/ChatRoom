@@ -32,6 +32,8 @@
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnProfil = new System.Windows.Forms.Button();
+            this.btnAddChatee = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -39,19 +41,19 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(198, 13);
+            this.dataGridView1.Location = new System.Drawing.Point(198, 45);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(404, 408);
+            this.dataGridView1.Size = new System.Drawing.Size(404, 376);
             this.dataGridView1.TabIndex = 1;
             // 
             // dataGridView2
             // 
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(12, 13);
+            this.dataGridView2.Location = new System.Drawing.Point(12, 45);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(180, 408);
+            this.dataGridView2.Size = new System.Drawing.Size(180, 376);
             this.dataGridView2.TabIndex = 2;
             // 
             // label1
@@ -72,11 +74,31 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "chatbox";
             // 
+            // btnProfil
+            // 
+            this.btnProfil.Location = new System.Drawing.Point(12, 12);
+            this.btnProfil.Name = "btnProfil";
+            this.btnProfil.Size = new System.Drawing.Size(180, 27);
+            this.btnProfil.TabIndex = 5;
+            this.btnProfil.Text = "Uredi Profil";
+            this.btnProfil.UseVisualStyleBackColor = true;
+            // 
+            // btnAddChatee
+            // 
+            this.btnAddChatee.Location = new System.Drawing.Point(198, 12);
+            this.btnAddChatee.Name = "btnAddChatee";
+            this.btnAddChatee.Size = new System.Drawing.Size(404, 27);
+            this.btnAddChatee.TabIndex = 6;
+            this.btnAddChatee.Text = "Dodaj klepetalca ali klepetalnico";
+            this.btnAddChatee.UseVisualStyleBackColor = true;
+            // 
             // chat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(617, 450);
+            this.Controls.Add(this.btnAddChatee);
+            this.Controls.Add(this.btnProfil);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView2);
@@ -96,5 +118,7 @@
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnProfil;
+        private System.Windows.Forms.Button btnAddChatee;
     }
 }
