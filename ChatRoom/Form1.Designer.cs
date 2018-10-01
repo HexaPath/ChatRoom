@@ -34,6 +34,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnPrijava = new System.Windows.Forms.Button();
             this.btnRegistracija = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -92,11 +93,23 @@
             this.btnRegistracija.Text = "Registriraj se";
             this.btnRegistracija.UseVisualStyleBackColor = true;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(74, 203);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(237, 25);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Izberi si svoje ime in geslo";
+
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 213);
+            this.ClientSize = new System.Drawing.Size(473, 238);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnRegistracija);
             this.Controls.Add(this.btnPrijava);
             this.Controls.Add(this.label3);
@@ -118,6 +131,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPrijava;
         private System.Windows.Forms.Button btnRegistracija;
+        private System.Windows.Forms.Label label2;
     }
 }
 
