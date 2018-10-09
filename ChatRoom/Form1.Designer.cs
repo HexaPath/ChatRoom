@@ -30,7 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.idTextBox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.passTextBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnPrijava = new System.Windows.Forms.Button();
             this.btnRegistracija = new System.Windows.Forms.Button();
@@ -41,11 +41,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Stencil", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(73, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(456, 33);
+            this.label1.Size = new System.Drawing.Size(326, 33);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Chatroom - Name placeholder";
+            this.label1.Text = "Chatroom - hexatech";
             // 
             // idTextBox
             // 
@@ -55,15 +55,17 @@
             this.idTextBox.Size = new System.Drawing.Size(316, 33);
             this.idTextBox.TabIndex = 3;
             this.idTextBox.Text = "Ime";
+            this.idTextBox.Click += new System.EventHandler(this.idTextBox_Click);
             // 
-            // textBox1
+            // passTextBox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(79, 115);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(316, 33);
-            this.textBox1.TabIndex = 4;
-            this.textBox1.Text = "Geslo";
+            this.passTextBox.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.passTextBox.Location = new System.Drawing.Point(79, 115);
+            this.passTextBox.Name = "passTextBox";
+            this.passTextBox.Size = new System.Drawing.Size(316, 33);
+            this.passTextBox.TabIndex = 4;
+            this.passTextBox.Text = "Geslo";
+            this.passTextBox.Click += new System.EventHandler(this.passTextBox_Click);
             // 
             // label3
             // 
@@ -83,6 +85,7 @@
             this.btnPrijava.TabIndex = 6;
             this.btnPrijava.Text = "Prijavi se";
             this.btnPrijava.UseVisualStyleBackColor = true;
+            this.btnPrijava.Click += new System.EventHandler(this.btnPrijava_Click);
             // 
             // btnRegistracija
             // 
@@ -92,6 +95,7 @@
             this.btnRegistracija.TabIndex = 7;
             this.btnRegistracija.Text = "Registriraj se";
             this.btnRegistracija.UseVisualStyleBackColor = true;
+            this.btnRegistracija.Click += new System.EventHandler(this.btnRegistracija_Click);
             // 
             // label2
             // 
@@ -102,7 +106,6 @@
             this.label2.Size = new System.Drawing.Size(237, 25);
             this.label2.TabIndex = 8;
             this.label2.Text = "Izberi si svoje ime in geslo";
-
             // 
             // Form1
             // 
@@ -113,7 +116,7 @@
             this.Controls.Add(this.btnRegistracija);
             this.Controls.Add(this.btnPrijava);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.passTextBox);
             this.Controls.Add(this.idTextBox);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -127,7 +130,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox idTextBox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox passTextBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPrijava;
         private System.Windows.Forms.Button btnRegistracija;
