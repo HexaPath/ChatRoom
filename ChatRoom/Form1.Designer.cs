@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.idTextBox = new System.Windows.Forms.TextBox();
-            this.passTextBox = new System.Windows.Forms.TextBox();
+            this.idtextbox = new System.Windows.Forms.TextBox();
+            this.passtextbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.btnPrijava = new System.Windows.Forms.Button();
             this.btnRegistracija = new System.Windows.Forms.Button();
@@ -47,25 +47,25 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Chatroom - hexatech";
             // 
-            // idTextBox
+            // idtextbox
             // 
-            this.idTextBox.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.idTextBox.Location = new System.Drawing.Point(79, 76);
-            this.idTextBox.Name = "idTextBox";
-            this.idTextBox.Size = new System.Drawing.Size(316, 33);
-            this.idTextBox.TabIndex = 3;
-            this.idTextBox.Text = "Ime";
-            this.idTextBox.Click += new System.EventHandler(this.idTextBox_Click);
+            this.idtextbox.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.idtextbox.Location = new System.Drawing.Point(79, 76);
+            this.idtextbox.Name = "idtextbox";
+            this.idtextbox.Size = new System.Drawing.Size(316, 33);
+            this.idtextbox.TabIndex = 3;
+            this.idtextbox.Text = "Ime";
+            this.idtextbox.Click += new System.EventHandler(this.idTextBox_Click);
             // 
-            // passTextBox
+            // passtextbox
             // 
-            this.passTextBox.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.passTextBox.Location = new System.Drawing.Point(79, 115);
-            this.passTextBox.Name = "passTextBox";
-            this.passTextBox.Size = new System.Drawing.Size(316, 33);
-            this.passTextBox.TabIndex = 4;
-            this.passTextBox.Text = "Geslo";
-            this.passTextBox.Click += new System.EventHandler(this.passTextBox_Click);
+            this.passtextbox.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.passtextbox.Location = new System.Drawing.Point(79, 115);
+            this.passtextbox.Name = "passtextbox";
+            this.passtextbox.Size = new System.Drawing.Size(316, 33);
+            this.passtextbox.TabIndex = 4;
+            this.passtextbox.Text = "Geslo";
+            this.passtextbox.Click += new System.EventHandler(this.passTextBox_Click);
             // 
             // label3
             // 
@@ -116,8 +116,8 @@
             this.Controls.Add(this.btnRegistracija);
             this.Controls.Add(this.btnPrijava);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.passTextBox);
-            this.Controls.Add(this.idTextBox);
+            this.Controls.Add(this.passtextbox);
+            this.Controls.Add(this.idtextbox);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -129,8 +129,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox idTextBox;
-        private System.Windows.Forms.TextBox passTextBox;
+        private System.Windows.Forms.TextBox idtextbox;
+        private System.Windows.Forms.TextBox passtextbox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPrijava;
         private System.Windows.Forms.Button btnRegistracija;

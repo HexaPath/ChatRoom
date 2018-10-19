@@ -30,15 +30,15 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.Usertxtbox = new System.Windows.Forms.TextBox();
+            this.Chattxtbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.ChatCreatetxtbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnUserEnter = new System.Windows.Forms.Button();
+            this.btnRoomEnter = new System.Windows.Forms.Button();
+            this.btnRoomCreate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -61,21 +61,23 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Uporabnika :";
             // 
-            // textBox1
+            // Usertxtbox
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox1.Location = new System.Drawing.Point(17, 86);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(293, 33);
-            this.textBox1.TabIndex = 3;
+            this.Usertxtbox.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Usertxtbox.Location = new System.Drawing.Point(17, 86);
+            this.Usertxtbox.Name = "Usertxtbox";
+            this.Usertxtbox.Size = new System.Drawing.Size(293, 33);
+            this.Usertxtbox.TabIndex = 3;
+
             // 
-            // textBox2
+            // Chattxtbox
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox2.Location = new System.Drawing.Point(17, 195);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(293, 33);
-            this.textBox2.TabIndex = 5;
+            this.Chattxtbox.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Chattxtbox.Location = new System.Drawing.Point(17, 195);
+            this.Chattxtbox.Name = "Chattxtbox";
+            this.Chattxtbox.Size = new System.Drawing.Size(293, 33);
+            this.Chattxtbox.TabIndex = 5;
+
             // 
             // label3
             // 
@@ -97,13 +99,14 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "Ustvaril bi svojo klepetalnico";
             // 
-            // textBox3
+            // ChatCreatetxtbox
             // 
-            this.textBox3.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox3.Location = new System.Drawing.Point(17, 344);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(293, 33);
-            this.textBox3.TabIndex = 7;
+            this.ChatCreatetxtbox.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ChatCreatetxtbox.Location = new System.Drawing.Point(17, 344);
+            this.ChatCreatetxtbox.Name = "ChatCreatetxtbox";
+            this.ChatCreatetxtbox.Size = new System.Drawing.Size(293, 33);
+            this.ChatCreatetxtbox.TabIndex = 7;
+     
             // 
             // label5
             // 
@@ -115,50 +118,53 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "Ime klepetalnice :";
             // 
-            // button1
+            // btnUserEnter
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(231, 125);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(79, 30);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "Potrdi";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnUserEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnUserEnter.Location = new System.Drawing.Point(231, 125);
+            this.btnUserEnter.Name = "btnUserEnter";
+            this.btnUserEnter.Size = new System.Drawing.Size(79, 30);
+            this.btnUserEnter.TabIndex = 9;
+            this.btnUserEnter.Text = "Potrdi";
+            this.btnUserEnter.UseVisualStyleBackColor = true;
+            this.btnUserEnter.Click += new System.EventHandler(this.btnUserEnter_Click);
             // 
-            // button2
+            // btnRoomEnter
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(231, 234);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(79, 30);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Potrdi";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnRoomEnter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnRoomEnter.Location = new System.Drawing.Point(231, 234);
+            this.btnRoomEnter.Name = "btnRoomEnter";
+            this.btnRoomEnter.Size = new System.Drawing.Size(79, 30);
+            this.btnRoomEnter.TabIndex = 10;
+            this.btnRoomEnter.Text = "Potrdi";
+            this.btnRoomEnter.UseVisualStyleBackColor = true;
+            this.btnRoomEnter.Click += new System.EventHandler(this.btnRoomEnter_Click);
             // 
-            // button3
+            // btnRoomCreate
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(231, 383);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(79, 30);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Potrdi";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnRoomCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnRoomCreate.Location = new System.Drawing.Point(231, 383);
+            this.btnRoomCreate.Name = "btnRoomCreate";
+            this.btnRoomCreate.Size = new System.Drawing.Size(79, 30);
+            this.btnRoomCreate.TabIndex = 11;
+            this.btnRoomCreate.Text = "Potrdi";
+            this.btnRoomCreate.UseVisualStyleBackColor = true;
+            this.btnRoomCreate.Click += new System.EventHandler(this.btnRoomCreate_Click);
             // 
             // AddChatbudy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 437);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnRoomCreate);
+            this.Controls.Add(this.btnRoomEnter);
+            this.Controls.Add(this.btnUserEnter);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.ChatCreatetxtbox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.Chattxtbox);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Usertxtbox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "AddChatbudy";
@@ -172,14 +178,14 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox Usertxtbox;
+        private System.Windows.Forms.TextBox Chattxtbox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox ChatCreatetxtbox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnUserEnter;
+        private System.Windows.Forms.Button btnRoomEnter;
+        private System.Windows.Forms.Button btnRoomCreate;
     }
 }

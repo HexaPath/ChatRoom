@@ -16,5 +16,31 @@ namespace ChatRoom
         {
             InitializeComponent();
         }
+
+        /* Dizajn
+         * Textboxes
+            Usertxtbox          //Noter je vpisan username uporabnika, katerega profil je potrebno prikazat
+            Chattxtbox          //Noter je vpisano ime klepetalnice v katero se povezuješ
+            ChatCreatetxtbox    //Noter je vpisano ime klepetalnice kateroo želiš narediti
+         * Buttons
+            btnUserEnter        // Sproži iskalni poziv (SQL), kjer iz baze izvrže podatke uporabnika 
+            btnRoomEnter
+            btnRoomCreate
+        */
+
+        private void btnUserEnter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRoomEnter_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRoomCreate_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -22,37 +22,42 @@ namespace ChatRoom
 
         private void btnRegistracija_Click(object sender, EventArgs e)
         {
-            username = idTextBox.Text;
-            password = passTextBox.Text;
+            username = idtextbox.Text;
+            password = passtextbox.Text;
+            int userid = 0;
             if (username != "" && password != "")
             {
                 // Registriraj uporabnika v bazo
-                // input username, password
-                //"INPUT "
+                // input username, password as user, pass
+                //"SELECT id FROM users WHERE (name = '"+ username +"');";
+               
+                if(userid == 0) {
+                    //"INSERT INTO users (name, pass) VALUES ('"+ username +"' , '"+ password +"'); ";
+                }
             }
         }
 
         private void btnPrijava_Click(object sender, EventArgs e)
         {
-            username = idTextBox.Text;
-            password = passTextBox.Text;
+            username = idtextbox.Text;
+            password = passtextbox.Text;
             if (username != "" && password != "")
             {
                 // Chech, če že obstaja
                 // definiranje baze MySql
 
-                //"SELECT id FROM users WHERE EXIST((user = '"+ username +"') AND (pass = '"+ password +"') = 1);";
+                //"SELECT COUNT(id) FROM users WHERE ((name = '"+ username +"') AND (pass = '"+ password +"'));";
             }
         }
 
         private void idTextBox_Click(object sender, EventArgs e)
         {
-            idTextBox.Text = "";
+            idtextbox.Text = "";
         }
 
         private void passTextBox_Click(object sender, EventArgs e)
         {
-            passTextBox.Text = "";
+            passtextbox.Text = "";
         }
     }
 }
