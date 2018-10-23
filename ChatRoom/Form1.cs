@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace ChatRoom
 {
@@ -17,15 +18,119 @@ namespace ChatRoom
             InitializeComponent();
         }
 
-        public string username = "";
-        string password = "";
+        class DBConnect
+{
+    private MySqlConnection connection;
+    private string server;
+    private string database;
+    private string uid;
+    private string password;
+
+    //Constructor
+    public DBConnect()
+    {
+        Initialize();
+    }
+
+    //Initialize values
+    private void Initialize()
+    {
+        server = "localhost";
+        database = "connectcsharptomysql";
+        uid = "username";
+        password = "password";
+        string connectionString;
+        connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
+		database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
+
+        connection = new MySqlConnection(connectionString);
+    }
+
+    //open connection to database
+    private bool OpenConnection()
+    {
+        try
+        {
+            connection.Open();
+            return true;
+        }
+        catch (MySqlException ex)
+        {
+                    //When handling errors, you can your application's response based 
+                    //on the error number.
+                    //The two most common error numbers when connecting are as follows:
+                    //0: Cannot connect to server.
+                    //1045: Invalid user name and/or password.
+            switch (ex.Number)
+            {
+                case 0:
+                MessageBox.Show("Cannot connect to server.  Contact administrator");
+                break;
+
+                case 1045:
+                MessageBox.Show("Invalid username/password, please try again");
+                break;
+            }
+        return false;
+        }
+    }
+
+        //Close connection
+    private bool CloseConnection()
+    {
+        try
+        {
+            connection.Close();
+            return true;
+        }
+        catch (MySqlException ex)
+        {
+            MessageBox.Show(ex.Message);
+            return false;
+        }
+    }
+
+   
+
+    //Insert statement
+    public void Insert()
+    {
+    }
+
+    //Update statement
+    public void Update()
+    {
+    }
+
+    //Delete statement
+    public void Delete()
+    {
+    }
+
+    //Select statement
+    public string Select()
+    {
+    }
+
+    //Count statement
+    public int Count()
+    {
+    }
+}
+
+
+
+
+
+        public string user = "";
+        string pass = "";
 
         private void btnRegistracija_Click(object sender, EventArgs e)
         {
-            username = idtextbox.Text;
-            password = passtextbox.Text;
+            user = idtextbox.Text;
+            pass = passtextbox.Text;
             int userid = 0;
-            if (username != "" && password != "")
+            if (user != "" && pass != "")
             {
                 // Registriraj uporabnika v bazo
                 // input username, password as user, pass
@@ -39,9 +144,9 @@ namespace ChatRoom
 
         private void btnPrijava_Click(object sender, EventArgs e)
         {
-            username = idtextbox.Text;
-            password = passtextbox.Text;
-            if (username != "" && password != "")
+            user = idtextbox.Text;
+            pass = passtextbox.Text;
+            if (user != "" && pass != "")
             {
                 // Chech, če že obstaja
                 // definiranje baze MySql
