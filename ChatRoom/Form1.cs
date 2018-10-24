@@ -19,104 +19,119 @@ namespace ChatRoom
         }
 
         class DBConnect
-{
-    private MySqlConnection connection;
-    private string server;
-    private string database;
-    private string uid;
-    private string password;
-
-    //Constructor
-    public DBConnect()
-    {
-        Initialize();
-    }
-
-    //Initialize values
-    private void Initialize()
-    {
-        server = "localhost";
-        database = "connectcsharptomysql";
-        uid = "username";
-        password = "password";
-        string connectionString;
-        connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
-		database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-
-        connection = new MySqlConnection(connectionString);
-    }
-
-    //open connection to database
-    private bool OpenConnection()
-    {
-        try
         {
-            connection.Open();
-            return true;
+            private MySqlConnection connection;
+            private string server;
+            private string database;
+            private string uid;
+            private string password;
+            public string salt = "Qv6SPSihsU7WkED5RS9yoKYseiqm5dcLD0TXIP0Im6nRz5TTbs1f5Ti9MxyO92sWfnwMZlQDLCHDUuXCOqUSZQlpuYiGxemQ9zFFXGBrmsHAdgJOqf5e6gP0j15XRE69Zv8PsPP8KmU0w2X76r4MCVLHrb8744SLlJBX7tsO4hJ52GsMdnhxF4pWMI7wDDPsFiryOtyo4hPqGqyetArygzbYzpEC5nn7A1hgii3Or0ZLGdshqpecf7hF40BAhw6l";
+
+        //Constructor
+        public DBConnect()
+        {
+            Initialize();
         }
-        catch (MySqlException ex)
+
+        //Initialize values
+        private void Initialize()
         {
-                    //When handling errors, you can your application's response based 
-                    //on the error number.
-                    //The two most common error numbers when connecting are as follows:
-                    //0: Cannot connect to server.
-                    //1045: Invalid user name and/or password.
-            switch (ex.Number)
+            server = "89.142.169.85";
+            database = "HexaPath_HexaPath_Database_no1";
+            uid = "HexaPath";
+            password = "geslogeslo";
+            string connectionString;
+            connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
+		    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";"; 
+            connection = new MySqlConnection(connectionString);
+        }
+
+        //open connection to database
+        public bool OpenConnection() 
+        {
+            try
             {
-                case 0:
-                MessageBox.Show("Cannot connect to server.  Contact administrator");
-                break;
-
-                case 1045:
-                MessageBox.Show("Invalid username/password, please try again");
-                break;
+                connection.Open();
+                return true;
             }
-        return false;
-        }
-    }
+            catch (MySqlException ex)
+            {
+                        //When handling errors, you can your application's response based 
+                        //on the error number.
+                        //The two most common error numbers when connecting are as follows:
+                        //0: Cannot connect to server.
+                        //1045: Invalid user name and/or password.
+                switch (ex.Number)
+                {
+                    case 0:
+                    MessageBox.Show("Cannot connect to server.  Contact administrator");
+                    break;
 
-        //Close connection
-    private bool CloseConnection()
-    {
-        try
-        {
-            connection.Close();
-            return true;
-        }
-        catch (MySqlException ex)
-        {
-            MessageBox.Show(ex.Message);
+                    case 1045:
+                    MessageBox.Show("Invalid username/password, please try again");
+                    break;
+                }
             return false;
+            }
         }
-    }
 
-   
+            //Close connection
+        public bool CloseConnection()
+        {
+            try
+            {
+                connection.Close();
+                return true;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
 
-    //Insert statement
-    public void Insert()
-    {
-    }
+            //Insert statement
+            public void Insert(string user, string pass)    //No values at this time
+            { 
+                string query = "INSERT INTO users (username, password) VALUES('"+ user +"', '"+ pass +"')";
 
-    //Update statement
-    public void Update()
-    {
-    }
+                //open connection
+                if (this.OpenConnection() == true)
+                {
+                    //create command and assign the query and connection from the constructor
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
 
-    //Delete statement
-    public void Delete()
-    {
-    }
+                    //Execute command
+                    cmd.ExecuteNonQuery();
 
-    //Select statement
-    public string Select()
-    {
-    }
+                    //close connection
+                    this.CloseConnection();
+                }
+            }
 
-    //Count statement
-    public int Count()
-    {
-    }
-}
+            //Update statement
+            public void Update()    //No values at this time
+            {
+                string query = "UPDATE users SET password='' WHERE username = ''";
+
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //create mysql command
+                    MySqlCommand cmd = new MySqlCommand();
+                    //Assign the query using CommandText
+                    cmd.CommandText = query;
+                    //Assign the connection using Connection
+                    cmd.Connection = connection;
+
+                    //Execute query
+                    cmd.ExecuteNonQuery();
+
+                    //close connection
+                    this.CloseConnection();
+                }
+            } 
+        }
 
 
 
@@ -132,6 +147,8 @@ namespace ChatRoom
             int userid = 0;
             if (user != "" && pass != "")
             {
+                DBConnect conn = new DBConnect();
+                conn.Insert(user, pass);
                 // Registriraj uporabnika v bazo
                 // input username, password as user, pass
                 //"SELECT id FROM users WHERE (name = '"+ username +"');";
