@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 
+
 namespace ChatRoom
 {
     public partial class Form1 : Form
@@ -17,6 +18,10 @@ namespace ChatRoom
         {
             InitializeComponent();
         }
+
+        public static int UID = 0;
+        public static string user = "";
+        string pass = "";
 
         class DBConnect
         {
@@ -91,10 +96,12 @@ namespace ChatRoom
         }
 
             //Insert statement
-            public void Insert(string user, string pass)    //No values at this time
-            { 
-                string query = "INSERT INTO users (username, password) VALUES('"+ user +"', '"+ pass +"')";
-
+            public void Insert(string user, string pass)  
+            {
+                password = salt + pass + salt; 
+                //treba je še hashat
+                string query = "INSERT INTO users (username, password) VALUES('"+ user +"', '"+ password +"') " +
+                    "WHERE (SELECT COUNT(*) FROM users WHERE (username = '" + user + "') = 0;)";
                 //open connection
                 if (this.OpenConnection() == true)
                 {
@@ -107,7 +114,41 @@ namespace ChatRoom
                     //close connection
                     this.CloseConnection();
                 }
+                
             }
+                //Select statement
+                public void SelectUser(string user)
+                {
+                    string query = "SELECT id, user, password, role FROM users WHERE (username = '" + user + "')";
+                    //Create a list to store the result
+                    int UID = 0;
+                    int role = 0; 
+
+                    //Open connection
+                    if (this.OpenConnection() == true)
+                    {
+                        //Create Command
+                        MySqlCommand cmd = new MySqlCommand(query, connection);
+                        //Create a data reader and Execute the command
+                        MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                        //Read the data and store them in the list
+                        while (dataReader.Read())
+                        {
+                            UID = dataReader.GetInt32(0);
+                            role = dataReader.GetInt32(3);
+                        }
+
+                        //close Data Reader
+                        dataReader.Close();
+
+                        //close Connection
+                        this.CloseConnection();
+                    
+                    }
+                    else{ MessageBox.Show("Sorry, it aint gonna work like that. Check your UID Select to fix this error"); }
+                }
+            
 
             //Update statement
             public void Update()    //No values at this time
@@ -137,25 +178,17 @@ namespace ChatRoom
 
 
 
-        public string user = "";
-        string pass = "";
+        
 
         private void btnRegistracija_Click(object sender, EventArgs e)
         {
             user = idtextbox.Text;
             pass = passtextbox.Text;
-            int userid = 0;
             if (user != "" && pass != "")
             {
                 DBConnect conn = new DBConnect();
                 conn.Insert(user, pass);
-                // Registriraj uporabnika v bazo
-                // input username, password as user, pass
-                //"SELECT id FROM users WHERE (name = '"+ username +"');";
                
-                if(userid == 0) {
-                    //"INSERT INTO users (name, pass) VALUES ('"+ username +"' , '"+ password +"'); ";
-                }
             }
         }
 
