@@ -25,6 +25,43 @@ namespace ChatRoom
         public static int role = 0;
         string pass = "";
 
+        /*HashStuff - the copy paste part*/
+
+        public static class SHA
+        {
+
+            public static string GenerateSHA256String(string inputString)
+            {
+                SHA256 sha256 = SHA256Managed.Create();
+                byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+                byte[] hash = sha256.ComputeHash(bytes);
+                return GetStringFromHash(hash);
+            }
+
+            public static string GenerateSHA512String(string inputString)
+            {
+                SHA512 sha512 = SHA512Managed.Create();
+                byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+                byte[] hash = sha512.ComputeHash(bytes);
+                return GetStringFromHash(hash);
+            }
+
+            private static string GetStringFromHash(byte[] hash)
+            {
+                StringBuilder result = new StringBuilder();
+                for (int i = 0; i < hash.Length; i++)
+                {
+                    result.Append(hash[i].ToString("X2"));
+                }
+                return result.ToString();
+            }
+
+        }
+
+        /*HashStuff*/
+        ///////////
+        ///////////
+        //////////
 
 
         /*
@@ -106,7 +143,8 @@ namespace ChatRoom
             public void Insert(string user, string pass)  
             {
                 string Ipassword = salt + pass + salt;
-                //password = SHA512(password);  //treba je še hashat
+                string HashedPassword = SHA.GenerateSHA512String(Ipassword);
+                MessageBox.Show(HashedPassword);
 
                 string query = "INSERT INTO users (username, password, role_id) VALUES('"+ user +"', '"+ Ipassword +"', 0) " +
                     "WHERE (SELECT COUNT(*) FROM users WHERE (username = '" + user + "') = 0;)";
@@ -129,7 +167,10 @@ namespace ChatRoom
                 {
                 
                     string Ipassword =salt + pass + salt; //password = SHA512(password);  //treba je še hashat;
-                    string query = "SELECT id, user, password, role_id FROM users WHERE (username = '" + user + "')AND (password ='"+ Ipassword +"')";
+                    string HashedPassword = SHA.GenerateSHA512String(Ipassword);
+                    MessageBox.Show(HashedPassword);
+                    string query = "SELECT id, user, password, role_id FROM users " +
+                    "WHERE (username = '" + user + "')AND (password ='"+ Ipassword +"')";
                     
                     int UserID = 0;
                     role = 0; 
@@ -146,7 +187,6 @@ namespace ChatRoom
                         {
                             UserID = dataReader.GetInt32(0);
                             user = dataReader.GetString(1);
-                            password = dataReader.GetString(2);
                             role = dataReader.GetInt32(3);
                         }
 
@@ -159,30 +199,6 @@ namespace ChatRoom
                     }
                     else{ MessageBox.Show("Sorry, it aint gonna work like that. Check your UserID Select to fix this error"); }
                 }
-            
-
-            //Update statement
-           /* public void Update()    //No values at this time
-            {
-                string query = "UPDATE users SET password='' WHERE username = ''";
-
-                //Open connection
-                if (this.OpenConnection() == true)
-                {
-                    //create mysql command
-                    MySqlCommand cmd = new MySqlCommand();
-                    //Assign the query using CommandText
-                    cmd.CommandText = query;
-                    //Assign the connection using Connection
-                    cmd.Connection = connection;
-
-                    //Execute query
-                    cmd.ExecuteNonQuery();
-
-                    //close connection
-                    this.CloseConnection();
-                }
-            } */
         }
 
 
