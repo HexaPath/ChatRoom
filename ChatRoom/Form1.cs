@@ -85,10 +85,10 @@ namespace ChatRoom
         //Initialize values
         private void Initialize()
         {
-            server = "89.142.169.85";
+            server = "localhost";
             database = "HexaPath_HexaPath_Database_no1";
-            uid = "HexaPath";
-            password = "geslogeslo";
+            uid = "root";//"HexaPath";
+            password = "";//"GesloGeslo";
             string connectionString;
             connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
 		    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";"; 
@@ -142,72 +142,106 @@ namespace ChatRoom
             //Insert statement
             public void Insert(string user, string pass)  
             {
-                string Ipassword = salt + pass + salt;
-                string HashedPassword = SHA.GenerateSHA512String(Ipassword);
-                MessageBox.Show(HashedPassword);
-
-                string query = "INSERT INTO users (username, password, role_id) VALUES('"+ user +"', '"+ Ipassword +"', 0) " +
-                    "WHERE (SELECT COUNT(*) FROM users WHERE (username = '" + user + "') = 0;)";
-                //open connection
+                int usernumber = 0;
+                string query = "";
                 if (this.OpenConnection() == true)
                 {
-                    //create command and assign the query and connection from the constructor
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    query = "SELECT COUNT(*) FROM users WHERE(username = '" + user + "')";
+                    
+                    MySqlCommand comm = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = comm.ExecuteReader();
 
-                    //Execute command
-                    cmd.ExecuteNonQuery();
-
-                    //close connection
+                    while (dataReader.Read())
+                    {
+                        usernumber = dataReader.GetInt32(0);
+                    }
+                    //close Data Reader
+                    dataReader.Close();
+                    
+                    //close Connection
                     this.CloseConnection();
                 }
-                
-            }
-                //Select statement
-                public void SelectUser(string user, string pass)
+                else
                 {
-                
-                    string Ipassword =salt + pass + salt; //password = SHA512(password);  //treba je še hashat;
-                    string HashedPassword = SHA.GenerateSHA512String(Ipassword);
-                    MessageBox.Show(HashedPassword);
-                    string query = "SELECT id, user, password, role_id FROM users " +
-                    "WHERE (username = '" + user + "')AND (password ='"+ Ipassword +"')";
-                    
-                    int UserID = 0;
-                    role = 0; 
+                    MessageBox.Show("Baza se ni odprla");
+                }
 
-                    //Open connection
+                if(usernumber == 0)
+                {
+                    string Ipassword = salt + pass + salt;
+                    string HashedPassword = SHA.GenerateSHA512String(Ipassword); 
+
+                    query = "INSERT INTO users (username, password, role_id) VALUES('" + user + "', '" + HashedPassword + "', 0)";
+                    //open connection
                     if (this.OpenConnection() == true)
                     {
-                        //Create Command
+                        //create command and assign the query and connection from the constructor
                         MySqlCommand cmd = new MySqlCommand(query, connection);
-                        //Create a data reader and Execute the command
-                        MySqlDataReader dataReader = cmd.ExecuteReader();
-                    
-                        while (dataReader.Read())
-                        {
-                            UserID = dataReader.GetInt32(0);
-                            user = dataReader.GetString(1);
-                            role = dataReader.GetInt32(3);
-                        }
 
-                        //close Data Reader
-                        dataReader.Close();
+                        //Execute command
+                        cmd.ExecuteNonQuery();
 
-                        //close Connection
+                        //close connection
                         this.CloseConnection();
-                    
+                         
                     }
-                    else{ MessageBox.Show("Sorry, it aint gonna work like that. Check your UserID Select to fix this error"); }
                 }
+                else
+                {
+                    MessageBox.Show("User Already Exists. Try Contacting Admin Or Create New Profile");
+                }
+            }
+
+
+            //Select statement
+            public void SelectUser(string user, string pass)
+            {
+
+                string Ipassword = salt + pass + salt; //password = SHA512(password);  //treba je še hashat;
+                string HashedPassword = SHA.GenerateSHA512String(Ipassword); 
+                string query = "SELECT id, username, password, role_id FROM users " +
+                "WHERE (username = '" + user + "')";
+                int UserID = 0;
+                string dbpassword = "";
+                role = 0;
+
+                //Open connection
+                if (this.OpenConnection() == true)
+                {
+                    //Create Command
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    //Create a data reader and Execute the command
+                    MySqlDataReader dataReader = cmd.ExecuteReader(); 
+                    while (dataReader.Read())
+                    {
+                        UserID = dataReader.GetInt32(0);
+                        user = dataReader.GetString(1); 
+                        dbpassword = dataReader.GetString(2); 
+                        role = dataReader.GetInt32(3);
+                    }
+                    //close Data Reader
+                    dataReader.Close();
+
+                    //close Connection
+                    this.CloseConnection();
+                     
+                    if (dbpassword == HashedPassword)
+                    { 
+                        //Do something now
+                    }
+                }
+                else { MessageBox.Show("Sorry, it aint gonna work like that. Check your UserID Select to fix this error"); }
+            }
         }
+  
+
+    /*Done with DataBases... Now, to shell*/
 
 
-        /*Done with DataBases... Now, to shell*/
 
 
-        
-
-        private void btnRegistracija_Click(object sender, EventArgs e)
+    private void btnRegistracija_Click(object sender, EventArgs e)
         {
             user = idtextbox.Text;
             pass = passtextbox.Text;
@@ -238,9 +272,12 @@ namespace ChatRoom
         {
             passtextbox.Text = "";
         }
-        
-        private void nextform()
-        {
+
+        public void newform()
+        { 
+            /*chat mainform = new chat();                                                                                                           // definiraj formo the end kot glavno formo
+            this.Hide();                                                                                                                                        // skrij to formo
+            mainform.Show();*/
             //Pošlji v chat formo
         }
     }
