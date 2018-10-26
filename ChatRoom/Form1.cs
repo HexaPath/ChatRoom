@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Security.Cryptography;
 using MySql.Data.MySqlClient;
 
 
@@ -19,10 +20,16 @@ namespace ChatRoom
             InitializeComponent();
         }
 
-        public static int UID = 0;
+        public static int UserID = 0;
         public static string user = "";
+        public static int role = 0;
         string pass = "";
 
+
+
+        /*
+         Screwing around with database
+        */
         class DBConnect
         {
             private MySqlConnection connection;
@@ -98,9 +105,10 @@ namespace ChatRoom
             //Insert statement
             public void Insert(string user, string pass)  
             {
-                password = salt + pass + salt; 
-                //treba je še hashat
-                string query = "INSERT INTO users (username, password) VALUES('"+ user +"', '"+ password +"') " +
+                string Ipassword = salt + pass + salt;
+                //password = SHA512(password);  //treba je še hashat
+
+                string query = "INSERT INTO users (username, password, role_id) VALUES('"+ user +"', '"+ Ipassword +"', 0) " +
                     "WHERE (SELECT COUNT(*) FROM users WHERE (username = '" + user + "') = 0;)";
                 //open connection
                 if (this.OpenConnection() == true)
@@ -117,12 +125,14 @@ namespace ChatRoom
                 
             }
                 //Select statement
-                public void SelectUser(string user)
+                public void SelectUser(string user, string pass)
                 {
-                    string query = "SELECT id, user, password, role FROM users WHERE (username = '" + user + "')";
-                    //Create a list to store the result
-                    int UID = 0;
-                    int role = 0; 
+                
+                    string Ipassword =salt + pass + salt; //password = SHA512(password);  //treba je še hashat;
+                    string query = "SELECT id, user, password, role_id FROM users WHERE (username = '" + user + "')AND (password ='"+ Ipassword +"')";
+                    
+                    int UserID = 0;
+                    role = 0; 
 
                     //Open connection
                     if (this.OpenConnection() == true)
@@ -131,11 +141,12 @@ namespace ChatRoom
                         MySqlCommand cmd = new MySqlCommand(query, connection);
                         //Create a data reader and Execute the command
                         MySqlDataReader dataReader = cmd.ExecuteReader();
-
-                        //Read the data and store them in the list
+                    
                         while (dataReader.Read())
                         {
-                            UID = dataReader.GetInt32(0);
+                            UserID = dataReader.GetInt32(0);
+                            user = dataReader.GetString(1);
+                            password = dataReader.GetString(2);
                             role = dataReader.GetInt32(3);
                         }
 
@@ -146,12 +157,12 @@ namespace ChatRoom
                         this.CloseConnection();
                     
                     }
-                    else{ MessageBox.Show("Sorry, it aint gonna work like that. Check your UID Select to fix this error"); }
+                    else{ MessageBox.Show("Sorry, it aint gonna work like that. Check your UserID Select to fix this error"); }
                 }
             
 
             //Update statement
-            public void Update()    //No values at this time
+           /* public void Update()    //No values at this time
             {
                 string query = "UPDATE users SET password='' WHERE username = ''";
 
@@ -171,11 +182,11 @@ namespace ChatRoom
                     //close connection
                     this.CloseConnection();
                 }
-            } 
+            } */
         }
 
 
-
+        /*Done with DataBases... Now, to shell*/
 
 
         
@@ -188,7 +199,6 @@ namespace ChatRoom
             {
                 DBConnect conn = new DBConnect();
                 conn.Insert(user, pass);
-               
             }
         }
 
@@ -198,10 +208,8 @@ namespace ChatRoom
             pass = passtextbox.Text;
             if (user != "" && pass != "")
             {
-                // Chech, če že obstaja
-                // definiranje baze MySql
-
-                //"SELECT COUNT(id) FROM users WHERE ((name = '"+ username +"') AND (pass = '"+ password +"'));";
+                DBConnect conn = new DBConnect();
+                conn.SelectUser(user, pass);
             }
         }
 
@@ -213,6 +221,11 @@ namespace ChatRoom
         private void passTextBox_Click(object sender, EventArgs e)
         {
             passtextbox.Text = "";
+        }
+        
+        private void nextform()
+        {
+            //Pošlji v chat formo
         }
     }
 }
