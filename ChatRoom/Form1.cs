@@ -157,7 +157,7 @@ namespace ChatRoom
                         cmd.ExecuteNonQuery();
                         this.CloseConnection(); 
                     }
-                    // Redirect to chat
+                    NewForm();
                 }
 
                 else { MessageBox.Show("User Already Exists. Try Contacting Admin Or Create New Profile"); }
@@ -191,11 +191,17 @@ namespace ChatRoom
                     this.CloseConnection(); //Zapri povezave
                      
                     if (database_password == secure_password)   // je geslo iz baze isto geslu iz forme ?
-                    { 
-                        // Redirect to chat
+                    {
+                        NewForm();
                     }
                 }
                 else { MessageBox.Show("Sorry, it aint gonna work like that. Check your UserID Select to fix this error"); }
+            }
+            private void NewForm()
+            {
+                chat mainform = new chat();
+                this.Hide(); //Pofixaj tole
+                mainform.Show();
             }
         }
   
