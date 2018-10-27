@@ -1,6 +1,6 @@
 ﻿namespace ChatRoom
 {
-    partial class Form1
+    partial class LoginForm
     {
         /// <summary>
         /// Required designer variable.
@@ -96,7 +96,7 @@
             this.btnRegistracija.UseVisualStyleBackColor = true;
             this.btnRegistracija.Click += new System.EventHandler(this.btnRegistracija_Click);
             // 
-            // Form1
+            // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,8 +107,8 @@
             this.Controls.Add(this.passtextbox);
             this.Controls.Add(this.idtextbox);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "LoginForm";
+            this.Text = "LoginForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
