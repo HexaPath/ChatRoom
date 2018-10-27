@@ -223,7 +223,7 @@ namespace ChatRoom
 
         private void newform()
         {
-            chat mainform = new chat();
+            ChatForm mainform = new ChatForm();
             this.Hide();
             mainform.Show();
         }

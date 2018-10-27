@@ -1,6 +1,6 @@
 ﻿namespace ChatRoom
 {
-    partial class chat
+    partial class ChatForm
     {
         /// <summary>
         /// Required designer variable.
@@ -104,7 +104,7 @@
             this.Controls.Add(this.dataGridView2);
             this.Controls.Add(this.dataGridView1);
             this.Name = "chat";
-            this.Text = "chat";
+            this.Text = "ChatForm";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
