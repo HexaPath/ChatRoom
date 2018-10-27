@@ -19,25 +19,16 @@ namespace ChatRoom
         {
             InitializeComponent();
         }
-
-        public static int UserID = 0;
-        public static string user = "";
+        /*Na novo definirano*/
+        public static int user_id = 0;
         public static int role = 0;
-        string pass = "";
+        public static string user_name = "";
+        string user_password = "";
+        int direction_log = 0;
 
-        /*HashStuff - the copy paste part*/
-
+        /*Hash Funkcija*/ // Ne si neki glave razbijat... Tole dela, tiho pa ponuci
         public static class SHA
         {
-
-            public static string GenerateSHA256String(string inputString)
-            {
-                SHA256 sha256 = SHA256Managed.Create();
-                byte[] bytes = Encoding.UTF8.GetBytes(inputString);
-                byte[] hash = sha256.ComputeHash(bytes);
-                return GetStringFromHash(hash);
-            }
-
             public static string GenerateSHA512String(string inputString)
             {
                 SHA512 sha512 = SHA512Managed.Create();
@@ -54,213 +45,189 @@ namespace ChatRoom
                     result.Append(hash[i].ToString("X2"));
                 }
                 return result.ToString();
-            }
-
+            } 
         }
-
-        /*HashStuff*/
-        ///////////
-        ///////////
-        //////////
-
-
-        /*
-         Screwing around with database
-        */
+        
+        /* Database*/ // Vse povezave na server mySql
         class DBConnect
         {
+            // Primarne spremenljivke
             private MySqlConnection connection;
-            private string server;
-            private string database;
-            private string uid;
-            private string password;
-            public string salt = "Qv6SPSihsU7WkED5RS9yoKYseiqm5dcLD0TXIP0Im6nRz5TTbs1f5Ti9MxyO92sWfnwMZlQDLCHDUuXCOqUSZQlpuYiGxemQ9zFFXGBrmsHAdgJOqf5e6gP0j15XRE69Zv8PsPP8KmU0w2X76r4MCVLHrb8744SLlJBX7tsO4hJ52GsMdnhxF4pWMI7wDDPsFiryOtyo4hPqGqyetArygzbYzpEC5nn7A1hgii3Or0ZLGdshqpecf7hF40BAhw6l";
-
-        //Constructor
-        public DBConnect()
-        {
-            Initialize();
-        }
-
-        //Initialize values
-        private void Initialize()
-        {
-            server = "localhost";
-            database = "HexaPath_HexaPath_Database_no1";
-            uid = "root";//"HexaPath";
-            password = "";//"GesloGeslo";
-            string connectionString;
-            connectionString = "SERVER=" + server + ";" + "DATABASE=" + 
-		    database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";"; 
-            connection = new MySqlConnection(connectionString);
-        }
-
-        //open connection to database
-        public bool OpenConnection() 
-        {
-            try
+            private string server_address;
+            private string server_database;
+            private string server_user;
+            private string server_password;
+            // Sekundarne spremenljivke
+            string salt = "Qv6SPSihsU7WkED5RS9yoKYseiqm5dcLD0TXIP0Im6nRz5TTbs1f5Ti9MxyO92sWfnwMZlQDLCHDUuXCOqUSZQlpuYiGxemQ9zFFXGBrmsHAdgJOqf5e6gP0j15XRE69Zv8PsPP8KmU0w2X76r4MCVLHrb8744SLlJBX7tsO4hJ52GsMdnhxF4pWMI7wDDPsFiryOtyo4hPqGqyetArygzbYzpEC5nn7A1hgii3Or0ZLGdshqpecf7hF40BAhw6l";
+            string query = "";
+            string secure_password = "";
+ 
+            //Constructor
+            public DBConnect()
             {
-                connection.Open();
-                return true;
+                Initialize();
             }
-            catch (MySqlException ex)
+
+            private void Initialize() // Nastavljanje podatkov podatkovne baze / hosta
             {
-                        //When handling errors, you can your application's response based 
-                        //on the error number.
-                        //The two most common error numbers when connecting are as follows:
-                        //0: Cannot connect to server.
-                        //1045: Invalid user name and/or password.
-                switch (ex.Number)
+                server_address = "localhost";
+                server_database = "HexaPath_HexaPath_Database_no1";
+                server_user = "root"; //"HexaPath";
+                server_password = ""; //"GesloGeslo";
+                string connectionString;
+                connectionString =  "SERVER=" + server_address + ";" + 
+                                    "DATABASE=" +  server_database + ";" + 
+                                    "UID=" + server_user + ";" + 
+                                    "PASSWORD=" + server_password + ";"; 
+                connection = new MySqlConnection(connectionString);
+            }
+
+            //open connection to database
+            public bool OpenConnection() 
+            {
+                try
                 {
-                    case 0:
-                    MessageBox.Show("Cannot connect to server.  Contact administrator");
-                    break;
-
-                    case 1045:
-                    MessageBox.Show("Invalid username/password, please try again");
-                    break;
+                    connection.Open();
+                    return true;
                 }
-            return false;
-            }
-        }
+                catch (MySqlException ex)
+                {
+                    //When handling errors, you can your application's response based on the error number.
+                    //The two most common error numbers when connecting are as follows:
+                    //0: Cannot connect to server.
+                    //1045: Invalid user name and/or password.
+                    switch (ex.Number)
+                    {
+                        case 0:
+                        MessageBox.Show("Cannot connect to server.  Contact administrator");
+                        break;
 
-            //Close connection
-        public bool CloseConnection()
-        {
-            try
-            {
-                connection.Close();
-                return true;
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
+                        case 1045:
+                        MessageBox.Show("Invalid username/password, please try again");
+                        break;
+                    }
                 return false;
+                }
             }
-        }
 
-            //Insert statement
-            public void Insert(string user, string pass)  
+            //Close connection to database
+            public bool CloseConnection()
             {
-                int usernumber = 0;
-                string query = "";
+                try
+                {
+                    connection.Close();
+                    return true;
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return false;
+                }
+            }
+            
+            //Insert statement
+            public void UserInsert(string user_name, string user_password)  
+            {
+                int unique = 0; // Preverjam, da se user še ne nahaja v bazi
                 if (this.OpenConnection() == true)
                 {
-                    query = "SELECT COUNT(*) FROM users WHERE(username = '" + user + "')";
+                        query = "SELECT COUNT(*) " +
+                                "FROM users " +
+                                "WHERE(username = '" + user_name + "')";
                     
                     MySqlCommand comm = new MySqlCommand(query, connection);
-                    //Create a data reader and Execute the command
                     MySqlDataReader dataReader = comm.ExecuteReader();
+                    while (dataReader.Read())  { unique = dataReader.GetInt32(0); } 
 
-                    while (dataReader.Read())
-                    {
-                        usernumber = dataReader.GetInt32(0);
-                    }
-                    //close Data Reader
                     dataReader.Close();
-                    
-                    //close Connection
                     this.CloseConnection();
                 }
-                else
-                {
-                    MessageBox.Show("Baza se ni odprla");
-                }
 
-                if(usernumber == 0)
-                {
-                    string Ipassword = salt + pass + salt;
-                    string HashedPassword = SHA.GenerateSHA512String(Ipassword); 
+                else {MessageBox.Show("Baza se ni odprla"); }
 
-                    query = "INSERT INTO users (username, password, role_id) VALUES('" + user + "', '" + HashedPassword + "', 0)";
-                    //open connection
+                if (unique == 0)
+                {
+                    secure_password = SHA.GenerateSHA512String(salt + user_password + salt);
+                    query = "INSERT INTO users (username, password, role_id) " +
+                            "VALUES('" + user_name + "', '" + secure_password + "', 0)";
                     if (this.OpenConnection() == true)
                     {
-                        //create command and assign the query and connection from the constructor
                         MySqlCommand cmd = new MySqlCommand(query, connection);
 
-                        //Execute command
                         cmd.ExecuteNonQuery();
-
-                        //close connection
-                        this.CloseConnection();
-                         
+                        this.CloseConnection(); 
                     }
+                    // Redirect to chat
                 }
-                else
-                {
-                    MessageBox.Show("User Already Exists. Try Contacting Admin Or Create New Profile");
-                }
-            }
 
-
+                else { MessageBox.Show("User Already Exists. Try Contacting Admin Or Create New Profile"); }
+            }        
+            
             //Select statement
-            public void SelectUser(string user, string pass)
+            public void UserSelec(string user_name, string user_password)
             {
-
-                string Ipassword = salt + pass + salt; //password = SHA512(password);  //treba je še hashat;
-                string HashedPassword = SHA.GenerateSHA512String(Ipassword); 
-                string query = "SELECT id, username, password, role_id FROM users " +
-                "WHERE (username = '" + user + "')";
-                int UserID = 0;
-                string dbpassword = "";
+                string database_password = "";
+                user_id = 0;
                 role = 0;
-
-                //Open connection
+                secure_password = SHA.GenerateSHA512String(salt + user_password + salt);
+                query = "SELECT id, username, password, role_id " +
+                        "FROM users " +
+                        "WHERE (username = '" + user_name + "')";
+                
                 if (this.OpenConnection() == true)
                 {
-                    //Create Command
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    //Create a data reader and Execute the command
-                    MySqlDataReader dataReader = cmd.ExecuteReader(); 
+                    MySqlCommand cmd = new MySqlCommand(query, connection); //definiranje nove povezave - Magic
+                    MySqlDataReader dataReader = cmd.ExecuteReader();       //definiranje branja        - Magic
+
                     while (dataReader.Read())
                     {
-                        UserID = dataReader.GetInt32(0);
-                        user = dataReader.GetString(1); 
-                        dbpassword = dataReader.GetString(2); 
+                        user_id = dataReader.GetInt32(0);
+                        user_name = dataReader.GetString(1);
+                        database_password = dataReader.GetString(2); 
                         role = dataReader.GetInt32(3);
                     }
-                    //close Data Reader
-                    dataReader.Close();
 
-                    //close Connection
-                    this.CloseConnection();
+                    dataReader.Close(); // Zapri branje
+                    this.CloseConnection(); //Zapri povezave
                      
-                    if (dbpassword == HashedPassword)
+                    if (database_password == secure_password)   // je geslo iz baze isto geslu iz forme ?
                     { 
-                        //Do something now
+                        // Redirect to chat
                     }
                 }
                 else { MessageBox.Show("Sorry, it aint gonna work like that. Check your UserID Select to fix this error"); }
             }
         }
   
-
-    /*Done with DataBases... Now, to shell*/
-
-
-
-
-    private void btnRegistracija_Click(object sender, EventArgs e)
+        private void direction()    // Funkcija, da se znebim ponavljanja v gumbih, pošlje naprej na insert / select
         {
-            user = idtextbox.Text;
-            pass = passtextbox.Text;
-            if (user != "" && pass != "")
+            user_name = idtextbox.Text;
+            user_password = passtextbox.Text;
+            if (user_name != "" && user_password != "")
             {
                 DBConnect conn = new DBConnect();
-                conn.Insert(user, pass);
+                if(direction_log == 1)
+                {
+                    conn.UserInsert(user_name, user_password);
+                }
+                else if(direction_log == 2)
+                { 
+                    conn.UserSelec(user_name, user_password);
+                }
             }
+        }
+
+        /* Forma */
+        private void btnRegistracija_Click(object sender, EventArgs e)
+        {
+            direction_log = 1;
+            direction();
         }
 
         private void btnPrijava_Click(object sender, EventArgs e)
         {
-            user = idtextbox.Text;
-            pass = passtextbox.Text;
-            if (user != "" && pass != "")
-            {
-                DBConnect conn = new DBConnect();
-                conn.SelectUser(user, pass);
-            }
+            direction_log = 2;
+            direction();
         }
 
         private void idTextBox_Click(object sender, EventArgs e)
@@ -271,14 +238,6 @@ namespace ChatRoom
         private void passTextBox_Click(object sender, EventArgs e)
         {
             passtextbox.Text = "";
-        }
-
-        public void newform()
-        { 
-            /*chat mainform = new chat();                                                                                                           // definiraj formo the end kot glavno formo
-            this.Hide();                                                                                                                                        // skrij to formo
-            mainform.Show();*/
-            //Pošlji v chat formo
         }
     }
 }
