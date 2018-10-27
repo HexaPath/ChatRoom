@@ -24,7 +24,7 @@ namespace ChatRoom
         public static int role = 0;
         public static string user_name = "";
         string user_password = "";
-        int direction_log = 0;
+        public static int direction_log = 0;
 
         /*Hash Funkcija*/ // Ne si neki glave razbijat... Tole dela, tiho pa ponuci
         public static class SHA
@@ -157,7 +157,7 @@ namespace ChatRoom
                         cmd.ExecuteNonQuery();
                         this.CloseConnection(); 
                     }
-                    NewForm();
+                    direction_log = 3;
                 }
 
                 else { MessageBox.Show("User Already Exists. Try Contacting Admin Or Create New Profile"); }
@@ -192,20 +192,14 @@ namespace ChatRoom
                      
                     if (database_password == secure_password)   // je geslo iz baze isto geslu iz forme ?
                     {
-                        NewForm();
+                        direction_log = 3;
                     }
                 }
                 else { MessageBox.Show("Sorry, it aint gonna work like that. Check your UserID Select to fix this error"); }
             }
-            private void NewForm()
-            {
-                chat mainform = new chat();
-                this.Hide(); //Pofixaj tole
-                mainform.Show();
-            }
         }
   
-        private void direction()    // Funkcija, da se znebim ponavljanja v gumbih, pošlje naprej na insert / select
+        private void direction()    // Funkcija, da se znebim ponavljanja v gumbih, pošlje naprej na insert / select / new form
         {
             user_name = idtextbox.Text;
             user_password = passtextbox.Text;
@@ -215,12 +209,29 @@ namespace ChatRoom
                 if(direction_log == 1)
                 {
                     conn.UserInsert(user_name, user_password);
+                    if (direction_log == 3)
+                    {
+                        newform();
+                    }
+                    else { MessageBox.Show("Vnos ni bil mogoč"); }
                 }
                 else if(direction_log == 2)
                 { 
                     conn.UserSelec(user_name, user_password);
+                    if (direction_log == 3)
+                    {
+                        newform();
+                    }
+                    else { MessageBox.Show("Prijava ni bila mogoča"); }
                 }
             }
+        }
+
+        private void newform()
+        {
+            chat mainform = new chat();
+            this.Hide();
+            mainform.Show();
         }
 
         /* Forma */
