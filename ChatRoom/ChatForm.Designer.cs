@@ -304,7 +304,6 @@
             // ExitBtn
             // 
             this.ExitBtn.BackColor = System.Drawing.Color.Transparent;
-            this.ExitBtn.BackgroundImage = global::ChatRoom.Properties.Resources.manjša;
             this.ExitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ExitBtn.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
             this.ExitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
