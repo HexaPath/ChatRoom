@@ -51,8 +51,8 @@
             this.Contact_status_inactiveBtn = new System.Windows.Forms.Button();
             this.ContactInfoLabel = new System.Windows.Forms.Label();
             this.ContactProfileBtn = new System.Windows.Forms.Button();
-            this.ExitBtn = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.ExitBtn = new System.Windows.Forms.Button();
             this.RDockPanel.SuspendLayout();
             this.contactsPanel.SuspendLayout();
             this.StatusPanel_1.SuspendLayout();
@@ -292,17 +292,6 @@
             this.ContactProfileBtn.Text = "Profil";
             this.ContactProfileBtn.UseVisualStyleBackColor = true;
             // 
-            // ExitBtn
-            // 
-            this.ExitBtn.BackColor = System.Drawing.Color.Red;
-            this.ExitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExitBtn.Location = new System.Drawing.Point(717, 4);
-            this.ExitBtn.Name = "ExitBtn";
-            this.ExitBtn.Size = new System.Drawing.Size(32, 32);
-            this.ExitBtn.TabIndex = 12;
-            this.ExitBtn.Text = "X";
-            this.ExitBtn.UseVisualStyleBackColor = false;
-            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.AutoScroll = true;
@@ -311,6 +300,20 @@
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(734, 326);
             this.flowLayoutPanel2.TabIndex = 16;
+            // 
+            // ExitBtn
+            // 
+            this.ExitBtn.BackColor = System.Drawing.Color.Transparent;
+            this.ExitBtn.BackgroundImage = global::ChatRoom.Properties.Resources.manjša;
+            this.ExitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ExitBtn.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.ExitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitBtn.Location = new System.Drawing.Point(690, 9);
+            this.ExitBtn.Name = "ExitBtn";
+            this.ExitBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ExitBtn.Size = new System.Drawing.Size(50, 50);
+            this.ExitBtn.TabIndex = 12;
+            this.ExitBtn.UseVisualStyleBackColor = false;
             // 
             // ChatForm
             // 
