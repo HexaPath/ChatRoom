@@ -81,11 +81,17 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -96,25 +102,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\X-Icon.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\1000px-Black_x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\682349_button_512x512.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\1000px-Black_x1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\manjša.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\manjša1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\manjsa.png" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

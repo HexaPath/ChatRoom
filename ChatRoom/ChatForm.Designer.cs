@@ -52,7 +52,7 @@
             this.ContactInfoLabel = new System.Windows.Forms.Label();
             this.ContactProfileBtn = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.ExitBtn = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.RDockPanel.SuspendLayout();
             this.contactsPanel.SuspendLayout();
             this.StatusPanel_1.SuspendLayout();
@@ -205,8 +205,8 @@
             // TopPanel
             // 
             this.TopPanel.BackColor = System.Drawing.Color.MidnightBlue;
+            this.TopPanel.Controls.Add(this.button2);
             this.TopPanel.Controls.Add(this.panel4);
-            this.TopPanel.Controls.Add(this.ExitBtn);
             this.TopPanel.Controls.Add(this.Status_button_online);
             this.TopPanel.Controls.Add(this.Status_button_inactive);
             this.TopPanel.Controls.Add(this.Status_button_offline);
@@ -301,18 +301,20 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(734, 326);
             this.flowLayoutPanel2.TabIndex = 16;
             // 
-            // ExitBtn
+            // button2
             // 
-            this.ExitBtn.BackColor = System.Drawing.Color.Transparent;
-            this.ExitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ExitBtn.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.ExitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExitBtn.Location = new System.Drawing.Point(690, 9);
-            this.ExitBtn.Name = "ExitBtn";
-            this.ExitBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.ExitBtn.Size = new System.Drawing.Size(50, 50);
-            this.ExitBtn.TabIndex = 12;
-            this.ExitBtn.UseVisualStyleBackColor = false;
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Papyrus", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(693, 6);
+            this.button2.Name = "button2";
+            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button2.Size = new System.Drawing.Size(50, 50);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "X";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // ChatForm
             // 
@@ -365,10 +367,10 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label ContactInfoLabel;
         private System.Windows.Forms.Button ContactProfileBtn;
-        private System.Windows.Forms.Button ExitBtn;
         private System.Windows.Forms.Panel StatusPanel_2;
         private System.Windows.Forms.Button Contact_status_offlineBtn;
         private System.Windows.Forms.Button Contact_status_onlineBtn;
         private System.Windows.Forms.Button Contact_status_inactiveBtn;
+        private System.Windows.Forms.Button button2;
     }
 }
