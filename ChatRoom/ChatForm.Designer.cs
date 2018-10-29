@@ -28,52 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.btnProfil = new System.Windows.Forms.Button();
-            this.searchBox = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChatForm));
+            this.UserProfileBtn = new System.Windows.Forms.Button();
+            this.searchtextBox = new System.Windows.Forms.TextBox();
             this.Status_button_online = new System.Windows.Forms.Button();
             this.Status_button_inactive = new System.Windows.Forms.Button();
             this.Status_button_offline = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.MessagetextBox = new System.Windows.Forms.TextBox();
-            this.btnSend = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
+            this.SendBtn = new System.Windows.Forms.Button();
+            this.RDockPanel = new System.Windows.Forms.Panel();
+            this.contactsPanel = new System.Windows.Forms.FlowLayoutPanel();
+            this.StatusPanel_1 = new System.Windows.Forms.Panel();
+            this.User_status_offlineBtn = new System.Windows.Forms.Button();
+            this.User_status_onlineBtn = new System.Windows.Forms.Button();
+            this.User_status_inactiveBtn = new System.Windows.Forms.Button();
+            this.TopPanel = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.StatusPanel_2 = new System.Windows.Forms.Panel();
+            this.Contact_status_offlineBtn = new System.Windows.Forms.Button();
+            this.Contact_status_onlineBtn = new System.Windows.Forms.Button();
+            this.Contact_status_inactiveBtn = new System.Windows.Forms.Button();
+            this.ContactInfoLabel = new System.Windows.Forms.Label();
+            this.ContactProfileBtn = new System.Windows.Forms.Button();
+            this.ExitBtn = new System.Windows.Forms.Button();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.RDockPanel.SuspendLayout();
+            this.contactsPanel.SuspendLayout();
+            this.StatusPanel_1.SuspendLayout();
+            this.TopPanel.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.StatusPanel_2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // btnProfil
+            // UserProfileBtn
             // 
-            this.btnProfil.Location = new System.Drawing.Point(685, 3);
-            this.btnProfil.Name = "btnProfil";
-            this.btnProfil.Size = new System.Drawing.Size(64, 64);
-            this.btnProfil.TabIndex = 5;
-            this.btnProfil.Text = "Profil";
-            this.btnProfil.UseVisualStyleBackColor = true;
+            this.UserProfileBtn.Location = new System.Drawing.Point(6, 4);
+            this.UserProfileBtn.Name = "UserProfileBtn";
+            this.UserProfileBtn.Size = new System.Drawing.Size(64, 64);
+            this.UserProfileBtn.TabIndex = 5;
+            this.UserProfileBtn.Text = "Profil";
+            this.UserProfileBtn.UseVisualStyleBackColor = true;
             // 
-            // searchBox
+            // searchtextBox
             // 
-            this.searchBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.searchBox.Location = new System.Drawing.Point(3, 4);
-            this.searchBox.Name = "searchBox";
-            this.searchBox.Size = new System.Drawing.Size(287, 38);
-            this.searchBox.TabIndex = 7;
+            this.searchtextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.searchtextBox.Location = new System.Drawing.Point(76, 24);
+            this.searchtextBox.Name = "searchtextBox";
+            this.searchtextBox.Size = new System.Drawing.Size(239, 38);
+            this.searchtextBox.TabIndex = 7;
             // 
             // Status_button_online
             // 
@@ -110,7 +113,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 73);
+            this.button1.Location = new System.Drawing.Point(3, 3);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(287, 51);
             this.button1.TabIndex = 11;
@@ -119,226 +122,251 @@
             // 
             // MessagetextBox
             // 
-            this.MessagetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.MessagetextBox.Location = new System.Drawing.Point(498, 541);
+            this.MessagetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.MessagetextBox.Location = new System.Drawing.Point(327, 406);
             this.MessagetextBox.Name = "MessagetextBox";
-            this.MessagetextBox.Size = new System.Drawing.Size(525, 30);
+            this.MessagetextBox.Size = new System.Drawing.Size(670, 45);
             this.MessagetextBox.TabIndex = 12;
             // 
-            // btnSend
+            // SendBtn
             // 
-            this.btnSend.Location = new System.Drawing.Point(1029, 539);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(32, 32);
-            this.btnSend.TabIndex = 13;
-            this.btnSend.Text = "Sent";
-            this.btnSend.UseVisualStyleBackColor = true;
+            this.SendBtn.Location = new System.Drawing.Point(1003, 406);
+            this.SendBtn.Name = "SendBtn";
+            this.SendBtn.Size = new System.Drawing.Size(61, 45);
+            this.SendBtn.TabIndex = 13;
+            this.SendBtn.Text = "Send";
+            this.SendBtn.UseVisualStyleBackColor = true;
             // 
-            // panel1
+            // RDockPanel
             // 
-            this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.vScrollBar1);
-            this.panel1.Controls.Add(this.button9);
-            this.panel1.Controls.Add(this.button5);
-            this.panel1.Controls.Add(this.button6);
-            this.panel1.Controls.Add(this.button7);
-            this.panel1.Controls.Add(this.button8);
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Controls.Add(this.button4);
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.searchBox);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 583);
-            this.panel1.TabIndex = 14;
+            this.RDockPanel.BackColor = System.Drawing.Color.MidnightBlue;
+            this.RDockPanel.Controls.Add(this.UserProfileBtn);
+            this.RDockPanel.Controls.Add(this.contactsPanel);
+            this.RDockPanel.Controls.Add(this.StatusPanel_1);
+            this.RDockPanel.Controls.Add(this.searchtextBox);
+            this.RDockPanel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.RDockPanel.Location = new System.Drawing.Point(0, 0);
+            this.RDockPanel.Name = "RDockPanel";
+            this.RDockPanel.Size = new System.Drawing.Size(321, 454);
+            this.RDockPanel.TabIndex = 14;
             // 
-            // panel2
+            // contactsPanel
             // 
-            this.panel2.Controls.Add(this.btnProfil);
-            this.panel2.Controls.Add(this.Status_button_online);
-            this.panel2.Controls.Add(this.Status_button_inactive);
-            this.panel2.Controls.Add(this.Status_button_offline);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(321, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(752, 70);
-            this.panel2.TabIndex = 15;
+            this.contactsPanel.AutoScroll = true;
+            this.contactsPanel.Controls.Add(this.button1);
+            this.contactsPanel.Location = new System.Drawing.Point(3, 70);
+            this.contactsPanel.Name = "contactsPanel";
+            this.contactsPanel.Size = new System.Drawing.Size(318, 381);
+            this.contactsPanel.TabIndex = 16;
             // 
-            // button2
+            // StatusPanel_1
             // 
-            this.button2.Location = new System.Drawing.Point(3, 130);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(287, 51);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.StatusPanel_1.Controls.Add(this.User_status_offlineBtn);
+            this.StatusPanel_1.Controls.Add(this.User_status_onlineBtn);
+            this.StatusPanel_1.Controls.Add(this.User_status_inactiveBtn);
+            this.StatusPanel_1.Location = new System.Drawing.Point(76, 4);
+            this.StatusPanel_1.Name = "StatusPanel_1";
+            this.StatusPanel_1.Size = new System.Drawing.Size(54, 18);
+            this.StatusPanel_1.TabIndex = 24;
             // 
-            // button3
+            // User_status_offlineBtn
             // 
-            this.button3.Location = new System.Drawing.Point(3, 244);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(287, 51);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.User_status_offlineBtn.BackColor = System.Drawing.Color.Red;
+            this.User_status_offlineBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.User_status_offlineBtn.Location = new System.Drawing.Point(39, 3);
+            this.User_status_offlineBtn.Name = "User_status_offlineBtn";
+            this.User_status_offlineBtn.Size = new System.Drawing.Size(12, 12);
+            this.User_status_offlineBtn.TabIndex = 22;
+            this.User_status_offlineBtn.Text = "Profil";
+            this.User_status_offlineBtn.UseVisualStyleBackColor = false;
             // 
-            // button4
+            // User_status_onlineBtn
             // 
-            this.button4.Location = new System.Drawing.Point(3, 187);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(287, 51);
-            this.button4.TabIndex = 13;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.User_status_onlineBtn.BackColor = System.Drawing.Color.Lime;
+            this.User_status_onlineBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.User_status_onlineBtn.Location = new System.Drawing.Point(3, 3);
+            this.User_status_onlineBtn.Name = "User_status_onlineBtn";
+            this.User_status_onlineBtn.Size = new System.Drawing.Size(12, 12);
+            this.User_status_onlineBtn.TabIndex = 11;
+            this.User_status_onlineBtn.Text = "Profil";
+            this.User_status_onlineBtn.UseVisualStyleBackColor = false;
             // 
-            // button5
+            // User_status_inactiveBtn
             // 
-            this.button5.Location = new System.Drawing.Point(3, 472);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(287, 51);
-            this.button5.TabIndex = 18;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.User_status_inactiveBtn.BackColor = System.Drawing.Color.Yellow;
+            this.User_status_inactiveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.User_status_inactiveBtn.Location = new System.Drawing.Point(21, 3);
+            this.User_status_inactiveBtn.Name = "User_status_inactiveBtn";
+            this.User_status_inactiveBtn.Size = new System.Drawing.Size(12, 12);
+            this.User_status_inactiveBtn.TabIndex = 21;
+            this.User_status_inactiveBtn.Text = "Profil";
+            this.User_status_inactiveBtn.UseVisualStyleBackColor = false;
             // 
-            // button6
+            // TopPanel
             // 
-            this.button6.Location = new System.Drawing.Point(3, 415);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(287, 51);
-            this.button6.TabIndex = 17;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
+            this.TopPanel.BackColor = System.Drawing.Color.MidnightBlue;
+            this.TopPanel.Controls.Add(this.panel4);
+            this.TopPanel.Controls.Add(this.ExitBtn);
+            this.TopPanel.Controls.Add(this.Status_button_online);
+            this.TopPanel.Controls.Add(this.Status_button_inactive);
+            this.TopPanel.Controls.Add(this.Status_button_offline);
+            this.TopPanel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopPanel.Location = new System.Drawing.Point(321, 0);
+            this.TopPanel.Name = "TopPanel";
+            this.TopPanel.Size = new System.Drawing.Size(752, 68);
+            this.TopPanel.TabIndex = 15;
+            this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
+            this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
+            this.TopPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
             // 
-            // button7
+            // panel4
             // 
-            this.button7.Location = new System.Drawing.Point(3, 358);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(287, 51);
-            this.button7.TabIndex = 16;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
+            this.panel4.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.panel4.Controls.Add(this.StatusPanel_2);
+            this.panel4.Controls.Add(this.ContactInfoLabel);
+            this.panel4.Controls.Add(this.ContactProfileBtn);
+            this.panel4.Location = new System.Drawing.Point(6, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(329, 68);
+            this.panel4.TabIndex = 14;
             // 
-            // button8
+            // StatusPanel_2
             // 
-            this.button8.Location = new System.Drawing.Point(3, 301);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(287, 51);
-            this.button8.TabIndex = 15;
-            this.button8.Text = "button8";
-            this.button8.UseVisualStyleBackColor = true;
+            this.StatusPanel_2.Controls.Add(this.Contact_status_offlineBtn);
+            this.StatusPanel_2.Controls.Add(this.Contact_status_onlineBtn);
+            this.StatusPanel_2.Controls.Add(this.Contact_status_inactiveBtn);
+            this.StatusPanel_2.Location = new System.Drawing.Point(73, 44);
+            this.StatusPanel_2.Name = "StatusPanel_2";
+            this.StatusPanel_2.Size = new System.Drawing.Size(54, 18);
+            this.StatusPanel_2.TabIndex = 27;
             // 
-            // button9
+            // Contact_status_offlineBtn
             // 
-            this.button9.Location = new System.Drawing.Point(3, 529);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(287, 51);
-            this.button9.TabIndex = 19;
-            this.button9.Text = "button9";
-            this.button9.UseVisualStyleBackColor = true;
+            this.Contact_status_offlineBtn.BackColor = System.Drawing.Color.Red;
+            this.Contact_status_offlineBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Contact_status_offlineBtn.Location = new System.Drawing.Point(39, 3);
+            this.Contact_status_offlineBtn.Name = "Contact_status_offlineBtn";
+            this.Contact_status_offlineBtn.Size = new System.Drawing.Size(12, 12);
+            this.Contact_status_offlineBtn.TabIndex = 22;
+            this.Contact_status_offlineBtn.Text = "Profil";
+            this.Contact_status_offlineBtn.UseVisualStyleBackColor = false;
             // 
-            // vScrollBar1
+            // Contact_status_onlineBtn
             // 
-            this.vScrollBar1.Location = new System.Drawing.Point(293, 73);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(22, 507);
-            this.vScrollBar1.TabIndex = 20;
+            this.Contact_status_onlineBtn.BackColor = System.Drawing.Color.Lime;
+            this.Contact_status_onlineBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Contact_status_onlineBtn.Location = new System.Drawing.Point(3, 3);
+            this.Contact_status_onlineBtn.Name = "Contact_status_onlineBtn";
+            this.Contact_status_onlineBtn.Size = new System.Drawing.Size(12, 12);
+            this.Contact_status_onlineBtn.TabIndex = 11;
+            this.Contact_status_onlineBtn.Text = "Profil";
+            this.Contact_status_onlineBtn.UseVisualStyleBackColor = false;
             // 
-            // button10
+            // Contact_status_inactiveBtn
             // 
-            this.button10.BackColor = System.Drawing.Color.Lime;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button10.Location = new System.Drawing.Point(3, 3);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(12, 12);
-            this.button10.TabIndex = 11;
-            this.button10.Text = "Profil";
-            this.button10.UseVisualStyleBackColor = false;
+            this.Contact_status_inactiveBtn.BackColor = System.Drawing.Color.Yellow;
+            this.Contact_status_inactiveBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.Contact_status_inactiveBtn.Location = new System.Drawing.Point(21, 3);
+            this.Contact_status_inactiveBtn.Name = "Contact_status_inactiveBtn";
+            this.Contact_status_inactiveBtn.Size = new System.Drawing.Size(12, 12);
+            this.Contact_status_inactiveBtn.TabIndex = 21;
+            this.Contact_status_inactiveBtn.Text = "Profil";
+            this.Contact_status_inactiveBtn.UseVisualStyleBackColor = false;
             // 
-            // button11
+            // ContactInfoLabel
             // 
-            this.button11.BackColor = System.Drawing.Color.Yellow;
-            this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button11.Location = new System.Drawing.Point(21, 3);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(12, 12);
-            this.button11.TabIndex = 21;
-            this.button11.Text = "Profil";
-            this.button11.UseVisualStyleBackColor = false;
+            this.ContactInfoLabel.AutoSize = true;
+            this.ContactInfoLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContactInfoLabel.Location = new System.Drawing.Point(67, 8);
+            this.ContactInfoLabel.Name = "ContactInfoLabel";
+            this.ContactInfoLabel.Size = new System.Drawing.Size(121, 35);
+            this.ContactInfoLabel.TabIndex = 26;
+            this.ContactInfoLabel.Text = "label1";
             // 
-            // button12
+            // ContactProfileBtn
             // 
-            this.button12.BackColor = System.Drawing.Color.Red;
-            this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button12.Location = new System.Drawing.Point(39, 3);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(12, 12);
-            this.button12.TabIndex = 22;
-            this.button12.Text = "Profil";
-            this.button12.UseVisualStyleBackColor = false;
+            this.ContactProfileBtn.Location = new System.Drawing.Point(3, 2);
+            this.ContactProfileBtn.Name = "ContactProfileBtn";
+            this.ContactProfileBtn.Size = new System.Drawing.Size(64, 64);
+            this.ContactProfileBtn.TabIndex = 11;
+            this.ContactProfileBtn.Text = "Profil";
+            this.ContactProfileBtn.UseVisualStyleBackColor = true;
             // 
-            // contextMenuStrip1
+            // ExitBtn
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.ExitBtn.BackColor = System.Drawing.Color.Red;
+            this.ExitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitBtn.Location = new System.Drawing.Point(717, 4);
+            this.ExitBtn.Name = "ExitBtn";
+            this.ExitBtn.Size = new System.Drawing.Size(32, 32);
+            this.ExitBtn.TabIndex = 12;
+            this.ExitBtn.Text = "X";
+            this.ExitBtn.UseVisualStyleBackColor = false;
             // 
-            // panel3
+            // flowLayoutPanel2
             // 
-            this.panel3.Controls.Add(this.button12);
-            this.panel3.Controls.Add(this.button10);
-            this.panel3.Controls.Add(this.button11);
-            this.panel3.Location = new System.Drawing.Point(12, 49);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(54, 18);
-            this.panel3.TabIndex = 24;
+            this.flowLayoutPanel2.AutoScroll = true;
+            this.flowLayoutPanel2.BackColor = System.Drawing.Color.MediumBlue;
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(327, 74);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(734, 326);
+            this.flowLayoutPanel2.TabIndex = 16;
             // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1073, 583);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnSend);
+            this.AutoSize = true;
+            this.BackColor = System.Drawing.Color.DarkBlue;
+            this.ClientSize = new System.Drawing.Size(1073, 454);
+            this.Controls.Add(this.flowLayoutPanel2);
+            this.Controls.Add(this.TopPanel);
+            this.Controls.Add(this.SendBtn);
+            this.Controls.Add(this.RDockPanel);
             this.Controls.Add(this.MessagetextBox);
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ChatForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ChatForm";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
+            this.RDockPanel.ResumeLayout(false);
+            this.RDockPanel.PerformLayout();
+            this.contactsPanel.ResumeLayout(false);
+            this.StatusPanel_1.ResumeLayout(false);
+            this.TopPanel.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.StatusPanel_2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnProfil;
-        private System.Windows.Forms.TextBox searchBox;
+        private System.Windows.Forms.Button UserProfileBtn;
+        private System.Windows.Forms.TextBox searchtextBox;
         private System.Windows.Forms.Button Status_button_online;
         private System.Windows.Forms.Button Status_button_inactive;
         private System.Windows.Forms.Button Status_button_offline;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox MessagetextBox;
-        private System.Windows.Forms.Button btnSend;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Button button12;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.Button SendBtn;
+        private System.Windows.Forms.Panel RDockPanel;
+        private System.Windows.Forms.Panel TopPanel;
+        private System.Windows.Forms.Button User_status_onlineBtn;
+        private System.Windows.Forms.Panel StatusPanel_1;
+        private System.Windows.Forms.Button User_status_offlineBtn;
+        private System.Windows.Forms.Button User_status_inactiveBtn;
+        private System.Windows.Forms.FlowLayoutPanel contactsPanel;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label ContactInfoLabel;
+        private System.Windows.Forms.Button ContactProfileBtn;
+        private System.Windows.Forms.Button ExitBtn;
+        private System.Windows.Forms.Panel StatusPanel_2;
+        private System.Windows.Forms.Button Contact_status_offlineBtn;
+        private System.Windows.Forms.Button Contact_status_onlineBtn;
+        private System.Windows.Forms.Button Contact_status_inactiveBtn;
     }
 }
