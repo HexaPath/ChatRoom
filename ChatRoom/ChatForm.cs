@@ -28,7 +28,7 @@ namespace ChatRoom
         {
             mousedown = false;
         }
-        
+       
         private void TopPanel_MouseMove(object sender, MouseEventArgs e)
         {
             if(mousedown)
@@ -39,6 +39,27 @@ namespace ChatRoom
             }
         }
         /*Premikanje forme*/
+
+
+
+        int n = 8;
+        int x = 0;
+        private void contactsPanel_Paint(object sender, PaintEventArgs e)
+        {
+            
+            if (x==0)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    Button b = new Button();
+                    b.Size = new Size(215, 45); 
+                    b.Text = "b" + i;
+                    contactsPanel.Controls.Add(b);
+                    x++;
+                }
+            }
+        }
+
 
 
 

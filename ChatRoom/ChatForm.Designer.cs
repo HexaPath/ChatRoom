@@ -44,6 +44,7 @@
             this.User_status_onlineBtn = new System.Windows.Forms.Button();
             this.User_status_inactiveBtn = new System.Windows.Forms.Button();
             this.TopPanel = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.StatusPanel_2 = new System.Windows.Forms.Panel();
             this.Contact_status_offlineBtn = new System.Windows.Forms.Button();
@@ -52,7 +53,6 @@
             this.ContactInfoLabel = new System.Windows.Forms.Label();
             this.ContactProfileBtn = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.button2 = new System.Windows.Forms.Button();
             this.RDockPanel.SuspendLayout();
             this.contactsPanel.SuspendLayout();
             this.StatusPanel_1.SuspendLayout();
@@ -117,20 +117,20 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(287, 51);
             this.button1.TabIndex = 11;
-            this.button1.Text = "button1";
+            this.button1.Text = "ReplaceThis";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // MessagetextBox
             // 
             this.MessagetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.MessagetextBox.Location = new System.Drawing.Point(327, 406);
+            this.MessagetextBox.Location = new System.Drawing.Point(327, 545);
             this.MessagetextBox.Name = "MessagetextBox";
             this.MessagetextBox.Size = new System.Drawing.Size(670, 45);
             this.MessagetextBox.TabIndex = 12;
             // 
             // SendBtn
             // 
-            this.SendBtn.Location = new System.Drawing.Point(1003, 406);
+            this.SendBtn.Location = new System.Drawing.Point(1003, 545);
             this.SendBtn.Name = "SendBtn";
             this.SendBtn.Size = new System.Drawing.Size(61, 45);
             this.SendBtn.TabIndex = 13;
@@ -147,7 +147,7 @@
             this.RDockPanel.Dock = System.Windows.Forms.DockStyle.Left;
             this.RDockPanel.Location = new System.Drawing.Point(0, 0);
             this.RDockPanel.Name = "RDockPanel";
-            this.RDockPanel.Size = new System.Drawing.Size(321, 454);
+            this.RDockPanel.Size = new System.Drawing.Size(321, 593);
             this.RDockPanel.TabIndex = 14;
             // 
             // contactsPanel
@@ -156,8 +156,9 @@
             this.contactsPanel.Controls.Add(this.button1);
             this.contactsPanel.Location = new System.Drawing.Point(3, 70);
             this.contactsPanel.Name = "contactsPanel";
-            this.contactsPanel.Size = new System.Drawing.Size(318, 381);
+            this.contactsPanel.Size = new System.Drawing.Size(318, 520);
             this.contactsPanel.TabIndex = 16;
+            this.contactsPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.contactsPanel_Paint);
             // 
             // StatusPanel_1
             // 
@@ -218,6 +219,21 @@
             this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             this.TopPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Transparent;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Papyrus", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(693, 6);
+            this.button2.Name = "button2";
+            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.button2.Size = new System.Drawing.Size(50, 50);
+            this.button2.TabIndex = 15;
+            this.button2.Text = "X";
+            this.button2.UseVisualStyleBackColor = false;
             // 
             // panel4
             // 
@@ -298,23 +314,8 @@
             this.flowLayoutPanel2.BackColor = System.Drawing.Color.MediumBlue;
             this.flowLayoutPanel2.Location = new System.Drawing.Point(327, 74);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(734, 326);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(734, 465);
             this.flowLayoutPanel2.TabIndex = 16;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Papyrus", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(693, 6);
-            this.button2.Name = "button2";
-            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button2.Size = new System.Drawing.Size(50, 50);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "X";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // ChatForm
             // 
@@ -322,7 +323,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.DarkBlue;
-            this.ClientSize = new System.Drawing.Size(1073, 454);
+            this.ClientSize = new System.Drawing.Size(1073, 593);
             this.Controls.Add(this.flowLayoutPanel2);
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.SendBtn);
