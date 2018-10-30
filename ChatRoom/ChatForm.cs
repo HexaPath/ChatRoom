@@ -16,6 +16,68 @@ namespace ChatRoom
         {
             InitializeComponent();
         }
+
+
+        int x = 0;
+
+        private void contactsPanel_Paint(object sender, PaintEventArgs e)
+        {
+            string UserInfo = "blank user info";
+            string Status = "activity";
+            int n = 8; // Število edinstvenih klepetov v DB
+            if (x == 0)
+            {
+                for (int i = 0; i < n; i++)
+                {
+                    Button button = new Button();
+                    button.Size = new Size(215, 45);
+                    button.BackColor = Color.LightGray;
+                    button.FlatStyle = FlatStyle.Flat;
+
+                    button.Text = UserInfo + "  " + Status; 
+                    button.Tag = i;
+                    button.Name = "UserInfo" + i;
+
+                    contactsPanel.Controls.Add(button);
+                    x++;
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         /*Premikanje forme*/
         int mouseX = 0, mouseY = 0;
         bool mousedown;
@@ -38,30 +100,7 @@ namespace ChatRoom
                 this.SetDesktopLocation(mouseX, mouseY);
             }
         }
-        /*Premikanje forme*/
-
-
-
-        int n = 8;
-        int x = 0;
-        private void contactsPanel_Paint(object sender, PaintEventArgs e)
-        {
-            
-            if (x==0)
-            {
-                for (int i = 0; i < n; i++)
-                {
-                    Button b = new Button();
-                    b.Size = new Size(215, 45); 
-                    b.Text = "b" + i;
-                    contactsPanel.Controls.Add(b);
-                    x++;
-                }
-            }
-        }
-
-
-
-
+        /* /Premikanje forme*/
+        
     }
 }

@@ -44,8 +44,8 @@
             this.User_status_onlineBtn = new System.Windows.Forms.Button();
             this.User_status_inactiveBtn = new System.Windows.Forms.Button();
             this.TopPanel = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel4 = new System.Windows.Forms.Panel();
+            this.ExitBtn = new System.Windows.Forms.Button();
+            this.UserInfoPanel = new System.Windows.Forms.Panel();
             this.StatusPanel_2 = new System.Windows.Forms.Panel();
             this.Contact_status_offlineBtn = new System.Windows.Forms.Button();
             this.Contact_status_onlineBtn = new System.Windows.Forms.Button();
@@ -57,7 +57,7 @@
             this.contactsPanel.SuspendLayout();
             this.StatusPanel_1.SuspendLayout();
             this.TopPanel.SuspendLayout();
-            this.panel4.SuspendLayout();
+            this.UserInfoPanel.SuspendLayout();
             this.StatusPanel_2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -206,8 +206,8 @@
             // TopPanel
             // 
             this.TopPanel.BackColor = System.Drawing.Color.MidnightBlue;
-            this.TopPanel.Controls.Add(this.button2);
-            this.TopPanel.Controls.Add(this.panel4);
+            this.TopPanel.Controls.Add(this.ExitBtn);
+            this.TopPanel.Controls.Add(this.UserInfoPanel);
             this.TopPanel.Controls.Add(this.Status_button_online);
             this.TopPanel.Controls.Add(this.Status_button_inactive);
             this.TopPanel.Controls.Add(this.Status_button_offline);
@@ -220,31 +220,32 @@
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             this.TopPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
             // 
-            // button2
+            // ExitBtn
             // 
-            this.button2.BackColor = System.Drawing.Color.Transparent;
-            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Papyrus", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(693, 6);
-            this.button2.Name = "button2";
-            this.button2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.button2.Size = new System.Drawing.Size(50, 50);
-            this.button2.TabIndex = 15;
-            this.button2.Text = "X";
-            this.button2.UseVisualStyleBackColor = false;
+            this.ExitBtn.BackColor = System.Drawing.Color.Transparent;
+            this.ExitBtn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ExitBtn.FlatAppearance.BorderColor = System.Drawing.Color.MidnightBlue;
+            this.ExitBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ExitBtn.Font = new System.Drawing.Font("Papyrus", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ExitBtn.Location = new System.Drawing.Point(693, 6);
+            this.ExitBtn.Name = "ExitBtn";
+            this.ExitBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ExitBtn.Size = new System.Drawing.Size(50, 50);
+            this.ExitBtn.TabIndex = 15;
+            this.ExitBtn.Text = "X";
+            this.ExitBtn.UseVisualStyleBackColor = false;
             // 
-            // panel4
+            // UserInfoPanel
             // 
-            this.panel4.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.panel4.Controls.Add(this.StatusPanel_2);
-            this.panel4.Controls.Add(this.ContactInfoLabel);
-            this.panel4.Controls.Add(this.ContactProfileBtn);
-            this.panel4.Location = new System.Drawing.Point(6, 0);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(329, 68);
-            this.panel4.TabIndex = 14;
+            this.UserInfoPanel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.UserInfoPanel.Controls.Add(this.StatusPanel_2);
+            this.UserInfoPanel.Controls.Add(this.ContactInfoLabel);
+            this.UserInfoPanel.Controls.Add(this.ContactProfileBtn);
+            this.UserInfoPanel.Location = new System.Drawing.Point(6, 0);
+            this.UserInfoPanel.Name = "UserInfoPanel";
+            this.UserInfoPanel.Size = new System.Drawing.Size(329, 68);
+            this.UserInfoPanel.TabIndex = 14;
+            this.UserInfoPanel.Visible = false;
             // 
             // StatusPanel_2
             // 
@@ -340,8 +341,8 @@
             this.contactsPanel.ResumeLayout(false);
             this.StatusPanel_1.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.UserInfoPanel.ResumeLayout(false);
+            this.UserInfoPanel.PerformLayout();
             this.StatusPanel_2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -365,13 +366,13 @@
         private System.Windows.Forms.Button User_status_inactiveBtn;
         private System.Windows.Forms.FlowLayoutPanel contactsPanel;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel UserInfoPanel;
         private System.Windows.Forms.Label ContactInfoLabel;
         private System.Windows.Forms.Button ContactProfileBtn;
         private System.Windows.Forms.Panel StatusPanel_2;
         private System.Windows.Forms.Button Contact_status_offlineBtn;
         private System.Windows.Forms.Button Contact_status_onlineBtn;
         private System.Windows.Forms.Button Contact_status_inactiveBtn;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ExitBtn;
     }
 }
