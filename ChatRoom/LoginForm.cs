@@ -39,9 +39,9 @@ namespace ChatRoom
                     result.Append(hash[i].ToString("X2"));
                 }
                 return result.ToString();
-            } 
+            }
         }
-        
+
         /* Database*/ // Vse povezave na server mySql
         class DBConnect
         {
@@ -55,7 +55,7 @@ namespace ChatRoom
             string salt = "Qv6SPSihsU7WkED5RS9yoKYseiqm5dcLD0TXIP0Im6nRz5TTbs1f5Ti9MxyO92sWfnwMZlQDLCHDUuXCOqUSZQlpuYiGxemQ9zFFXGBrmsHAdgJOqf5e6gP0j15XRE69Zv8PsPP8KmU0w2X76r4MCVLHrb8744SLlJBX7tsO4hJ52GsMdnhxF4pWMI7wDDPsFiryOtyo4hPqGqyetArygzbYzpEC5nn7A1hgii3Or0ZLGdshqpecf7hF40BAhw6l";
             string query = "";
             string secure_password = "";
- 
+
             //Constructor
             public DBConnect()
             {
@@ -69,15 +69,15 @@ namespace ChatRoom
                 server_user = "root"; //"HexaPath";
                 server_password = ""; //"GesloGeslo";
                 string connectionString;
-                connectionString =  "SERVER=" + server_address + ";" + 
-                                    "DATABASE=" +  server_database + ";" + 
-                                    "UID=" + server_user + ";" + 
-                                    "PASSWORD=" + server_password + ";"; 
+                connectionString = "SERVER=" + server_address + ";" +
+                                    "DATABASE=" + server_database + ";" +
+                                    "UID=" + server_user + ";" +
+                                    "PASSWORD=" + server_password + ";";
                 connection = new MySqlConnection(connectionString);
             }
 
             //open connection to database
-            public bool OpenConnection() 
+            public bool OpenConnection()
             {
                 try
                 {
@@ -93,14 +93,14 @@ namespace ChatRoom
                     switch (ex.Number)
                     {
                         case 0:
-                        MessageBox.Show("Cannot connect to server.  Contact administrator");
-                        break;
+                            MessageBox.Show("Cannot connect to server.  Contact administrator");
+                            break;
 
                         case 1045:
-                        MessageBox.Show("Invalid username/password, please try again");
-                        break;
+                            MessageBox.Show("Invalid username/password, please try again");
+                            break;
                     }
-                return false;
+                    return false;
                 }
             }
 
@@ -118,26 +118,26 @@ namespace ChatRoom
                     return false;
                 }
             }
-            
+
             //Insert statement
-            public void UserInsert(string user_name, string user_password)  
+            public void UserInsert(string user_name, string user_password)
             {
                 int unique = 0; // Preverjam, da se user še ne nahaja v bazi
                 if (this.OpenConnection() == true)
                 {
-                        query = "SELECT COUNT(*) " +
-                                "FROM users " +
-                                "WHERE(username = '" + user_name + "')";
-                    
+                    query = "SELECT COUNT(*) " +
+                            "FROM users " +
+                            "WHERE(username = '" + user_name + "')";
+
                     MySqlCommand comm = new MySqlCommand(query, connection);
                     MySqlDataReader dataReader = comm.ExecuteReader();
-                    while (dataReader.Read())  { unique = dataReader.GetInt32(0); } 
+                    while (dataReader.Read()) { unique = dataReader.GetInt32(0); }
 
                     dataReader.Close();
                     this.CloseConnection();
                 }
 
-                else {MessageBox.Show("Baza se ni odprla"); }
+                else { MessageBox.Show("Baza se ni odprla"); }
 
                 if (unique == 0)
                 {
@@ -149,14 +149,40 @@ namespace ChatRoom
                         MySqlCommand cmd = new MySqlCommand(query, connection);
 
                         cmd.ExecuteNonQuery();
-                        this.CloseConnection(); 
+                        this.CloseConnection();
                     }
-                    direction_log = 3;
+                    if (this.OpenConnection() == true)
+                    { 
+                        direction_log = 3;
+                        string querie = "SELECT id FROM users " +
+                            "WHERE (username = '" + user_name + "') AND " +
+                            "(password = '" + secure_password + "') ";
+                        MySqlCommand command = new MySqlCommand(querie, connection); //definiranje nove povezave - Magic
+                        MySqlDataReader dataReader = command.ExecuteReader();       //definiranje branja        - Magic
+                        dataReader.Read();
+                        user_id = dataReader.GetInt32(0);
+                        dataReader.Close(); // Zapri branje
+                        this.CloseConnection(); //Zapri povezave   
+                    }
                 }
 
                 else { MessageBox.Show("User Already Exists. Try Contacting Admin Or Create New Profile"); }
-            }        
-            
+            }
+
+            //Update Activity Timestamp statement
+            public void TimestampUpdate(int user_id)
+            {
+                string query = "UPDATE users " +
+                                "SET timestamp = '" + DateTime.Now + "'" +
+                                "WHERE id = '"+ user_id +"'"; 
+                if (this.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection);
+                    MessageBox.Show(query);
+                    cmd.ExecuteNonQuery();
+                    this.CloseConnection();
+                }
+            }
             //Select statement
             public void UserSelec(string user_name, string user_password)
             {
@@ -167,7 +193,7 @@ namespace ChatRoom
                 query = "SELECT id, username, password, role_id " +
                         "FROM users " +
                         "WHERE (username = '" + user_name + "')";
-                
+
                 if (this.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, connection); //definiranje nove povezave - Magic
@@ -177,13 +203,13 @@ namespace ChatRoom
                     {
                         user_id = dataReader.GetInt32(0);
                         user_name = dataReader.GetString(1);
-                        database_password = dataReader.GetString(2); 
+                        database_password = dataReader.GetString(2);
                         role = dataReader.GetInt32(3);
                     }
 
                     dataReader.Close(); // Zapri branje
                     this.CloseConnection(); //Zapri povezave
-                     
+
                     if (database_password == secure_password)   // je geslo iz baze isto geslu iz forme ?
                     {
                         direction_log = 3;
@@ -192,7 +218,7 @@ namespace ChatRoom
                 else { MessageBox.Show("Sorry, it aint gonna work like that. Check your UserID Select to fix this error"); }
             }
         }
-  
+
         private void direction()    // Funkcija, da se znebim ponavljanja v gumbih, pošlje naprej na insert / select / new form
         {
             user_name = idtextbox.Text;
@@ -200,7 +226,7 @@ namespace ChatRoom
             if (user_name != "" && user_password != "")
             {
                 DBConnect conn = new DBConnect();
-                if(direction_log == 1)
+                if (direction_log == 1)
                 {
                     conn.UserInsert(user_name, user_password);
                     if (direction_log == 3)
@@ -209,8 +235,8 @@ namespace ChatRoom
                     }
                     else { MessageBox.Show("Vnos ni bil mogoč"); }
                 }
-                else if(direction_log == 2)
-                { 
+                else if (direction_log == 2)
+                {
                     conn.UserSelec(user_name, user_password);
                     if (direction_log == 3)
                     {
@@ -223,6 +249,10 @@ namespace ChatRoom
 
         private void newform()
         {
+            // Hold your horses ... Need To check id and get TimeStamp
+            DBConnect conn = new DBConnect();
+            MessageBox.Show(Convert.ToString(user_id));
+            conn.TimestampUpdate(user_id);
             ChatForm mainform = new ChatForm();
             this.Hide();
             mainform.Show();
@@ -250,5 +280,8 @@ namespace ChatRoom
         {
             passtextbox.Text = "";
         }
+        
+
+
     }
 }

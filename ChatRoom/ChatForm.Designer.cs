@@ -34,7 +34,6 @@
             this.Status_button_online = new System.Windows.Forms.Button();
             this.Status_button_inactive = new System.Windows.Forms.Button();
             this.Status_button_offline = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.MessagetextBox = new System.Windows.Forms.TextBox();
             this.SendBtn = new System.Windows.Forms.Button();
             this.RDockPanel = new System.Windows.Forms.Panel();
@@ -54,7 +53,6 @@
             this.ContactProfileBtn = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.RDockPanel.SuspendLayout();
-            this.contactsPanel.SuspendLayout();
             this.StatusPanel_1.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.UserInfoPanel.SuspendLayout();
@@ -111,15 +109,6 @@
             this.Status_button_offline.Text = "_";
             this.Status_button_offline.UseVisualStyleBackColor = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(287, 51);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "ReplaceThis";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // MessagetextBox
             // 
             this.MessagetextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
@@ -153,7 +142,6 @@
             // contactsPanel
             // 
             this.contactsPanel.AutoScroll = true;
-            this.contactsPanel.Controls.Add(this.button1);
             this.contactsPanel.Location = new System.Drawing.Point(3, 70);
             this.contactsPanel.Name = "contactsPanel";
             this.contactsPanel.Size = new System.Drawing.Size(318, 520);
@@ -180,6 +168,7 @@
             this.User_status_offlineBtn.TabIndex = 22;
             this.User_status_offlineBtn.Text = "Profil";
             this.User_status_offlineBtn.UseVisualStyleBackColor = false;
+            this.User_status_offlineBtn.Click += new System.EventHandler(this.User_status_offlineBtn_Click);
             // 
             // User_status_onlineBtn
             // 
@@ -191,6 +180,7 @@
             this.User_status_onlineBtn.TabIndex = 11;
             this.User_status_onlineBtn.Text = "Profil";
             this.User_status_onlineBtn.UseVisualStyleBackColor = false;
+            this.User_status_onlineBtn.Click += new System.EventHandler(this.User_status_onlineBtn_Click);
             // 
             // User_status_inactiveBtn
             // 
@@ -202,6 +192,7 @@
             this.User_status_inactiveBtn.TabIndex = 21;
             this.User_status_inactiveBtn.Text = "Profil";
             this.User_status_inactiveBtn.UseVisualStyleBackColor = false;
+            this.User_status_inactiveBtn.Click += new System.EventHandler(this.User_status_inactiveBtn_Click);
             // 
             // TopPanel
             // 
@@ -216,6 +207,7 @@
             this.TopPanel.Name = "TopPanel";
             this.TopPanel.Size = new System.Drawing.Size(752, 68);
             this.TopPanel.TabIndex = 15;
+            this.TopPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.TopPanel_Paint);
             this.TopPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseDown);
             this.TopPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseMove);
             this.TopPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TopPanel_MouseUp);
@@ -234,6 +226,7 @@
             this.ExitBtn.TabIndex = 15;
             this.ExitBtn.Text = "X";
             this.ExitBtn.UseVisualStyleBackColor = false;
+            this.ExitBtn.Click += new System.EventHandler(this.ExitBtn_Click);
             // 
             // UserInfoPanel
             // 
@@ -293,10 +286,10 @@
             // ContactInfoLabel
             // 
             this.ContactInfoLabel.AutoSize = true;
-            this.ContactInfoLabel.Font = new System.Drawing.Font("Stencil", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContactInfoLabel.Font = new System.Drawing.Font("Papyrus", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactInfoLabel.Location = new System.Drawing.Point(67, 8);
             this.ContactInfoLabel.Name = "ContactInfoLabel";
-            this.ContactInfoLabel.Size = new System.Drawing.Size(121, 35);
+            this.ContactInfoLabel.Size = new System.Drawing.Size(92, 44);
             this.ContactInfoLabel.TabIndex = 26;
             this.ContactInfoLabel.Text = "label1";
             // 
@@ -338,7 +331,6 @@
             this.Text = "ChatForm";
             this.RDockPanel.ResumeLayout(false);
             this.RDockPanel.PerformLayout();
-            this.contactsPanel.ResumeLayout(false);
             this.StatusPanel_1.ResumeLayout(false);
             this.TopPanel.ResumeLayout(false);
             this.UserInfoPanel.ResumeLayout(false);
@@ -355,7 +347,6 @@
         private System.Windows.Forms.Button Status_button_online;
         private System.Windows.Forms.Button Status_button_inactive;
         private System.Windows.Forms.Button Status_button_offline;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox MessagetextBox;
         private System.Windows.Forms.Button SendBtn;
         private System.Windows.Forms.Panel RDockPanel;
