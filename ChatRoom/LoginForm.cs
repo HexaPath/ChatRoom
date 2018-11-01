@@ -178,7 +178,7 @@ namespace ChatRoom
                 if (this.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MessageBox.Show(query);
+                    //MessageBox.Show(query);
                     cmd.ExecuteNonQuery();
                     this.CloseConnection();
                 }
@@ -251,7 +251,7 @@ namespace ChatRoom
         {
             // Hold your horses ... Need To check id and get TimeStamp
             DBConnect conn = new DBConnect();
-            MessageBox.Show(Convert.ToString(user_id));
+            //MessageBox.Show(Convert.ToString(user_id));
             conn.TimestampUpdate(user_id);
             ChatForm mainform = new ChatForm();
             this.Hide();

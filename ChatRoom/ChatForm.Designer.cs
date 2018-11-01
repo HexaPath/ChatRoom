@@ -116,6 +116,7 @@
             this.MessagetextBox.Name = "MessagetextBox";
             this.MessagetextBox.Size = new System.Drawing.Size(670, 45);
             this.MessagetextBox.TabIndex = 12;
+            this.MessagetextBox.TextChanged += new System.EventHandler(this.MessagetextBox_TextChanged);
             // 
             // SendBtn
             // 
@@ -125,6 +126,7 @@
             this.SendBtn.TabIndex = 13;
             this.SendBtn.Text = "Send";
             this.SendBtn.UseVisualStyleBackColor = true;
+            this.SendBtn.Click += new System.EventHandler(this.SendBtn_Click);
             // 
             // RDockPanel
             // 

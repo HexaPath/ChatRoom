@@ -115,7 +115,7 @@ namespace ChatRoom
             public int GetUsersCount(int user_id)
             {
                int count = 0;
-                string query = "SELECT DISTINCT COUNT(users.username) FROM users, messages_private, friend_system " +
+                string query = "SELECT COUNT(DISTINCT users.id) FROM users, messages_private, friend_system " +
                                 "WHERE(((users.id = messages_private.reciever_id) AND(messages_private.sender_id = '" + user_id + "') AND(messages_private.reciever_id != '" + user_id + "')) " +
                                 "OR((users.id = messages_private.sender_id) AND(messages_private.reciever_id = '" + user_id + "') AND(messages_private.sender_id != '" + user_id + "'))) " +
                                 "OR(((users.id = friend_system.user1_id) AND(friend_system.user2_id = '" + user_id + "') AND(friend_system.user1_id != '" + user_id + "')) " +
@@ -212,8 +212,9 @@ namespace ChatRoom
                     return datetime;
                 }
                 else { return ""; }
-                
             }
+
+
 
         }
 
@@ -289,6 +290,8 @@ namespace ChatRoom
         }
 
 
+
+
         private void ActivicyChecker()
         {
             DBConnect conn = new DBConnect();
@@ -337,6 +340,19 @@ namespace ChatRoom
         private void TopPanel_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void MessagetextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SendBtn_Click(object sender, EventArgs e) // Pošiljanje stringa v text-message
+        {
+            string message_send_now = MessagetextBox.Text;
+            string time = Convert.ToString(DateTime.Now);
+            MessagetextBox.Text = "";
+            MessageBox.Show("Tole bo kazalo na desni strani chatboxa, ko bo delalo seveda " + message_send_now);
         }
 
         /* Zapiranje forme/aplikacije*/
