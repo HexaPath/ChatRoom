@@ -173,7 +173,7 @@ namespace ChatRoom
             public void TimestampUpdate(int user_id)
             {
                 string query = "UPDATE users " +
-                                "SET timestamp = '" + DateTime.Now + "'" +
+                                "SET timestamp = '" + DateTime.Now + "', override_id = 1 " +
                                 "WHERE id = '"+ user_id +"'"; 
                 if (this.OpenConnection() == true)
                 {

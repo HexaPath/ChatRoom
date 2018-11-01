@@ -271,6 +271,40 @@ namespace ChatRoom
                 }
                 else { return "Error"; }
             }
+
+            //Search constantly when typing with like
+            public void search (string searchtext)
+            {
+                string query = "(SELECT username, id, '1' AS type FROM users WHERE(username LIKE '%" + searchtext + "%'))" +
+                                "UNION " +
+                                "(SELECT name, id, '2' AS type FROM rooms WHERE(name LIKE '%" + searchtext + "%'))";
+                string name = "";
+                int id = 0;
+                int type = 0;
+                string tip = "";
+
+                if (this.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection); //definiranje nove povezave - Magic
+                    MySqlDataReader dataReader = cmd.ExecuteReader();       //definiranje branja        - Magic
+
+                    while (dataReader.Read())
+                    {
+                        name = dataReader.GetString(0);
+                        id = dataReader.GetInt32(1);
+                        type = dataReader.GetInt32(2);
+                        if(type == 1) { tip = "user"; }
+                            else if(type == 2) { tip = "room"; }
+                            else { tip = "zafuku si"; }
+                        MessageBox.Show(name + " " + Convert.ToString(id) + " " + tip);
+                    }
+
+                    dataReader.Close(); // Zapri branje
+                    this.CloseConnection(); //Zapri povezave
+
+                }
+                else { MessageBox.Show("Sorry, it aint gonna work like that. Check your UserID Select to fix this error"); }
+            }
         }
 
 
@@ -321,7 +355,14 @@ namespace ChatRoom
 
         void groupButtonClickOneEvent(object sender, EventArgs e) // Kaj naredi gumb za chatroom
         {
-
+            Button button = sender as Button;
+            Room_id = Convert.ToInt32(button.Name);
+            Room_Info = button.Text;
+            UserInfoPanel.Visible = true;
+            ContactInfoLabel.Text = Room_Info;
+            Contact_status_onlineBtn.Visible = false;
+            Contact_status_inactiveBtn.Visible = false;
+            Contact_status_offlineBtn.Visible = false;
         }
 
 
@@ -431,9 +472,19 @@ namespace ChatRoom
             MessageBox.Show("Tole bo kazalo na desni strani chatboxa, ko bo delalo seveda " + message_send_now);
         }
 
+        private void searchtextBox_TextChanged(object sender, EventArgs e)
+        {
+            string s = searchtextBox.Text;
+            DBConnect conn = new DBConnect();
+            conn.search(s);
+        }
+
         /* Zapiranje forme/aplikacije*/
         private void ExitBtn_Click(object sender, EventArgs e)
         {
+            int swansong = 3;
+            DBConnect conn = new DBConnect(); 
+            conn.TimestampUpdate(User_id, swansong);
             Application.Exit();
         }
     }
