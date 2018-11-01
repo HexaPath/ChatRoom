@@ -20,6 +20,8 @@ namespace ChatRoom
 
         string User_Info = "blank user info";       // name od userja
         int User_id = LoginForm.user_id;            // id od userja
+        string Room_Info = "blank room info";       // name od chatrooma
+        int Room_id = 0;                            // id od chatrooma
         int contact_user_id = 0;
         int UserStatusOverride = 0;
         int ContactStatusOverride = 0;
@@ -105,7 +107,6 @@ namespace ChatRoom
                 if (this.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, connection);
-                    MessageBox.Show(query);
                     cmd.ExecuteNonQuery();
                     this.CloseConnection();
                 }
@@ -128,7 +129,7 @@ namespace ChatRoom
                     MySqlDataReader dataReader = cmd.ExecuteReader();       //definiranje branja        - Magic
                     dataReader.Read();
                     count = dataReader.GetInt32(0);
-                    MessageBox.Show(Convert.ToString(count));
+                    //MessageBox.Show(Convert.ToString(count));
                     dataReader.Close(); // Zapri branje
                     this.CloseConnection(); //Zapri povezave 
                     return count;
@@ -143,8 +144,9 @@ namespace ChatRoom
                                 "WHERE(((users.id = messages_private.reciever_id) AND(messages_private.sender_id = '" + id + "') AND(messages_private.reciever_id != '" + id + "')) " +
                                 "OR((users.id = messages_private.sender_id) AND(messages_private.reciever_id = '" + id + "') AND(messages_private.sender_id != '" + id + "'))) " +
                                 "OR(((users.id = friend_system.user1_id) AND(friend_system.user2_id = '" + id + "') AND(friend_system.user1_id != '" + id + "')) " +
-                                "OR((users.id = friend_system.user2_id) AND(friend_system.user1_id = '" + id + "') AND(friend_system.user2_id != '" + id + "')))";
-
+                                "OR((users.id = friend_system.user2_id) AND(friend_system.user1_id = '" + id + "') AND(friend_system.user2_id != '" + id + "')))" +
+                                "ORDER BY users.id DESC LIMIT " + i + " , 1 ";
+                //MessageBox.Show(query);
                 if (this.OpenConnection() == true)
                 {
                     MySqlCommand cmd = new MySqlCommand(query, connection); //definiranje nove povezave - Magic
@@ -165,7 +167,8 @@ namespace ChatRoom
                                 "WHERE(((users.id = messages_private.reciever_id) AND(messages_private.sender_id = '" + id + "') AND(messages_private.reciever_id != '" + id + "')) " +
                                 "OR((users.id = messages_private.sender_id) AND(messages_private.reciever_id = '" + id + "') AND(messages_private.sender_id != '" + id + "'))) " +
                                 "OR(((users.id = friend_system.user1_id) AND(friend_system.user2_id = '" + id + "') AND(friend_system.user1_id != '" + id + "')) " +
-                                "OR((users.id = friend_system.user2_id) AND(friend_system.user1_id = '" + id + "') AND(friend_system.user2_id != '" + id + "')))";
+                                "OR((users.id = friend_system.user2_id) AND(friend_system.user1_id = '" + id + "') AND(friend_system.user2_id != '" + id + "')))" +
+                                "ORDER BY users.id DESC LIMIT " + i + " , 1 ";
 
                 if (this.OpenConnection() == true)
                 {
@@ -214,8 +217,60 @@ namespace ChatRoom
                 else { return ""; }
             }
 
+            // Select room user has joined to
+            public int GetRoomCount(int id)
+            {
+                int count = 0;
+                string query = "SELECT COUNT(DISTINCT id) FROM participants WHERE user_id = '"+ id +"'";
 
+                if (this.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection); //definiranje nove povezave - Magic
+                    MySqlDataReader dataReader = cmd.ExecuteReader();       //definiranje branja        - Magic
+                    dataReader.Read();
+                    count = dataReader.GetInt32(0);
+                    //MessageBox.Show(Convert.ToString(count));
+                    dataReader.Close(); // Zapri branje
+                    this.CloseConnection(); //Zapri povezave 
+                    return count;
+                }
+                else { MessageBox.Show("Sorry, it aint gonna work like that. Check your Friends to fix this error"); return 0; }
+            }
 
+            public int GetRoomId(int id, int i)
+            {
+                int IdentificationNumber = 0;
+                string query = "SELECT room_id FROM participants WHERE user_id = '" + id + "'  ORDER BY id DESC LIMIT " + i + ",1";
+                if (this.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection); //definiranje nove povezave - Magic
+                    MySqlDataReader dataReader = cmd.ExecuteReader();       //definiranje branja        - Magic
+                    dataReader.Read();
+                    IdentificationNumber = dataReader.GetInt32(0);
+                    dataReader.Close(); // Zapri branje
+                    this.CloseConnection(); //Zapri povezave 
+                    return IdentificationNumber;
+                }
+                else { return 0; } 
+            }
+            public string GetRooms(int id, int i)
+            {
+                string username = "Blank";
+                string query = "SELECT r.name FROM participants p" +
+                                "INNER JOIN rooms r ON p.room_id = r.id" +
+                                "WHERE user_id = '" + id + "'  ORDER BY r.id DESC LIMIT " + i + ",1";
+                if (this.OpenConnection() == true)
+                {
+                    MySqlCommand cmd = new MySqlCommand(query, connection); //definiranje nove povezave - Magic
+                    MySqlDataReader dataReader = cmd.ExecuteReader();       //definiranje branja        - Magic
+                    dataReader.Read();
+                    username = dataReader.GetString(0);
+                    dataReader.Close(); // Zapri branje
+                    this.CloseConnection(); //Zapri povezave 
+                    return username;
+                }
+                else { return "Error"; }
+            }
         }
 
 
@@ -244,8 +299,31 @@ namespace ChatRoom
                     contactsPanel.Controls.Add(button);                 // Gumb naredi na panelo
                     ResetVariableX++;                                   // Da se forma ne posodablja konstantno
                 }
+
+                DBConnect com = new DBConnect();
+                int y = com.GetRoomCount(User_id);
+                for (int i = 0; i < y; i++)
+                {
+                    Button groupbutton = new Button();                       // Mal dizajna
+                    groupbutton.Size = new Size(215, 45);                    // Mal dizajna
+                    groupbutton.BackColor = Color.LightBlue;                 // Mal dizajna
+                    groupbutton.FlatStyle = FlatStyle.Flat;                  // Mal dizajna
+                    groupbutton.Click += new EventHandler(groupButtonClickOneEvent);  //Gumbu naredim funkcionalnost
+                    Room_Info = conn.GetRooms(User_id, i);      // Izpis iz baze... username
+                    groupbutton.Text = Room_Info;
+                    Room_id = conn.GetRoomId(User_id, i);      // Izpis iz baze...  id
+                    groupbutton.Name = Convert.ToString(contact_user_id);
+                    contactsPanel.Controls.Add(groupbutton);                 // Gumb naredi na panelo
+                    ResetVariableX++;                                   // Da se forma ne posodablja konstantno
+                }
             }
         }
+
+        void groupButtonClickOneEvent(object sender, EventArgs e) // Kaj naredi gumb za chatroom
+        {
+
+        }
+
 
         void ButtonClickOneEvent(object sender, EventArgs e) // Kaj dejansko naredi novonastali gumb...
         {
@@ -261,7 +339,7 @@ namespace ChatRoom
             DBConnect conn = new DBConnect();
             ContactStatusOverride = conn.ActivicyCheck_Override(contact_user_id);
             dbTime = conn.ActivicyCheck_DateTime(contact_user_id);
-            MessageBox.Show(dbTime);
+            //MessageBox.Show(dbTime);
             TimeSpan diff = DateTime.Now - DateTime.Parse(dbTime); 
             double minute = diff.TotalMinutes; 
             if (ContactStatusOverride == 1 || ContactStatusOverride == 0)
@@ -289,9 +367,7 @@ namespace ChatRoom
             }
         }
 
-
-
-
+        
         private void ActivicyChecker()
         {
             DBConnect conn = new DBConnect();

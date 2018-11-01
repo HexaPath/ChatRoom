@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gostitelj: 127.0.0.1
--- Čas nastanka: 26. okt 2018 ob 16.14
+-- Čas nastanka: 01. nov 2018 ob 15.17
 -- Različica strežnika: 10.1.35-MariaDB
 -- Različica PHP: 7.2.9
 
@@ -35,6 +35,13 @@ CREATE TABLE `friend_system` (
   `user2_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Odloži podatke za tabelo `friend_system`
+--
+
+INSERT INTO `friend_system` (`id`, `time`, `user1_id`, `user2_id`) VALUES
+(1, '2018-10-31 11:29:37', 1, 10);
+
 -- --------------------------------------------------------
 
 --
@@ -49,6 +56,15 @@ CREATE TABLE `messages_private` (
   `reciever_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Odloži podatke za tabelo `messages_private`
+--
+
+INSERT INTO `messages_private` (`id`, `timestamp`, `text`, `sender_id`, `reciever_id`) VALUES
+(1, '2018-10-31 11:25:27', 'BLABLABLABLA', 1, 10),
+(2, '2018-10-31 11:25:27', 'albalblablablab', 10, 1),
+(3, '2018-10-31 19:09:17', '', 11, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +78,26 @@ CREATE TABLE `messages_public` (
   `sender_id` int(11) NOT NULL,
   `room_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabele `override`
+--
+
+CREATE TABLE `override` (
+  `id` int(11) NOT NULL,
+  `name` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Odloži podatke za tabelo `override`
+--
+
+INSERT INTO `override` (`id`, `name`) VALUES
+(1, 'ONLINE'),
+(2, 'INNACTIVE'),
+(3, 'OFFLINE');
 
 -- --------------------------------------------------------
 
@@ -110,16 +146,19 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(128) NOT NULL,
-  `activetimestamp` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `role_id` int(11) NOT NULL
+  `role_id` int(11) NOT NULL,
+  `timestamp` varchar(21) NOT NULL,
+  `override_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Odloži podatke za tabelo `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `activetimestamp`, `role_id`) VALUES
-(4, 'Ime', '574F4A737CAEDD7BD516AF24DF12A074A334047BF58B2D79C587F162253213CCF152A2A1F3E33997D66FA4369F25E757D6C2FEC7E12BD1D1F651B3B1CCD777C8', NULL, 0);
+INSERT INTO `users` (`id`, `username`, `password`, `role_id`, `timestamp`, `override_id`) VALUES
+(1, 'Ime', '574F4A737CAEDD7BD516AF24DF12A074A334047BF58B2D79C587F162253213CCF152A2A1F3E33997D66FA4369F25E757D6C2FEC7E12BD1D1F651B3B1CCD777C8', 0, '1. 11. 2018 14:59:53', 2),
+(10, 'Test', '038AA18AFCA0A680AEF647FAC188DE250AB7CD0DFC5DBC0524565EFABB6ECAD6884D060FB7F9AEBA6547999B598F4D2B0F4542EA23C77511A09F75297D7B5431', 0, '31. 10. 2018 20:07:09', 1),
+(11, 'Nemors', '2C7176A77EB35AE29DD823CB389424E2B8F31D0BE7E3D63DCBB95965959085E6E9D6D1B4B735AA6C4208D2B2C3270750B143786DD4EA265462964B026AFE9031', 0, '31. 10. 2018 20:18:37', 1);
 
 --
 -- Indeksi zavrženih tabel
@@ -141,6 +180,12 @@ ALTER TABLE `messages_private`
 -- Indeksi tabele `messages_public`
 --
 ALTER TABLE `messages_public`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indeksi tabele `override`
+--
+ALTER TABLE `override`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -175,19 +220,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT tabele `friend_system`
 --
 ALTER TABLE `friend_system`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT tabele `messages_private`
 --
 ALTER TABLE `messages_private`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT tabele `messages_public`
 --
 ALTER TABLE `messages_public`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT tabele `override`
+--
+ALTER TABLE `override`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT tabele `participants`
@@ -211,7 +262,7 @@ ALTER TABLE `rooms`
 -- AUTO_INCREMENT tabele `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
