@@ -475,8 +475,12 @@ namespace ChatRoom
         private void searchtextBox_TextChanged(object sender, EventArgs e)
         {
             string s = searchtextBox.Text;
-            DBConnect conn = new DBConnect();
-            conn.search(s);
+            if (s != "")
+            {
+                DBConnect conn = new DBConnect();
+                conn.search(s);
+            }
+            else { }
         }
 
         /* Zapiranje forme/aplikacije*/
