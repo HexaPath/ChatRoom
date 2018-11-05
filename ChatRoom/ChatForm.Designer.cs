@@ -49,6 +49,7 @@
             this.ContactInfoLabel = new System.Windows.Forms.Label();
             this.ContactProfileBtn = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.AddContactBtn = new System.Windows.Forms.Button();
             this.RDockPanel.SuspendLayout();
             this.StatusPanel_1.SuspendLayout();
             this.TopPanel.SuspendLayout();
@@ -195,6 +196,7 @@
             // UserInfoPanel
             // 
             this.UserInfoPanel.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.UserInfoPanel.Controls.Add(this.AddContactBtn);
             this.UserInfoPanel.Controls.Add(this.StatusPanel_2);
             this.UserInfoPanel.Controls.Add(this.ContactInfoLabel);
             this.UserInfoPanel.Controls.Add(this.ContactProfileBtn);
@@ -275,6 +277,19 @@
             this.flowLayoutPanel2.Size = new System.Drawing.Size(734, 465);
             this.flowLayoutPanel2.TabIndex = 16;
             // 
+            // AddContactBtn
+            // 
+            this.AddContactBtn.BackColor = System.Drawing.Color.Lime;
+            this.AddContactBtn.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.AddContactBtn.Font = new System.Drawing.Font("Papyrus", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddContactBtn.Location = new System.Drawing.Point(290, 29);
+            this.AddContactBtn.Name = "AddContactBtn";
+            this.AddContactBtn.Size = new System.Drawing.Size(36, 36);
+            this.AddContactBtn.TabIndex = 16;
+            this.AddContactBtn.Text = "+";
+            this.AddContactBtn.UseVisualStyleBackColor = false;
+            this.AddContactBtn.Visible = false;
+            // 
             // ChatForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -326,5 +341,6 @@
         private System.Windows.Forms.Button Contact_status_onlineBtn;
         private System.Windows.Forms.Button Contact_status_inactiveBtn;
         private System.Windows.Forms.Button ExitBtn;
+        private System.Windows.Forms.Button AddContactBtn;
     }
 }

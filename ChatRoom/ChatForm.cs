@@ -400,7 +400,14 @@ namespace ChatRoom
             }
             else if(ContactStatusOverride == 2)
             {
-                Contact_status_inactiveBtn.Visible = true;
+                if (minute >= 11 && minute <= 30)
+                {
+                    Contact_status_inactiveBtn.Visible = true;
+                }
+                else if (minute > 30)
+                {
+                    Contact_status_offlineBtn.Visible = true;
+                }
             }
             else if (ContactStatusOverride == 3)
             {
@@ -469,7 +476,11 @@ namespace ChatRoom
             string message_send_now = MessagetextBox.Text;
             string time = Convert.ToString(DateTime.Now);
             MessagetextBox.Text = "";
-            MessageBox.Show("Tole bo kazalo na desni strani chatboxa, ko bo delalo seveda " + message_send_now);
+            if (message_send_now == "" || message_send_now == " ") { }
+            else
+            {
+                MessageBox.Show("Tole bo kazalo na desni strani chatboxa, ko bo delalo seveda " + message_send_now + " " + time);
+            }
         }
 
         private void searchtextBox_TextChanged(object sender, EventArgs e)
